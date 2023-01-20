@@ -1,0 +1,9 @@
+@use "./fonts.scss";
+
+body {
+  font-family: fonts.$general;
+}
+
+// body * {
+//   outline: rgb(0, 164, 240) solid 1px;
+// }
