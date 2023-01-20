@@ -1,0 +1,6 @@
+// @use "sass:math";
+
+$nav-height: 10rem;
+$footer-height: 8rem;
+$app-height: calc(100vh - $footer-height);
+$app-width: calc(100vh - $nav-height);
