@@ -1,8 +1,28 @@
 <script>
+  // import { onMount } from "svelte";
+
+  // onMount(() => {
+  //   const title = document.querySelector(".intro-title");
+  //   console.log(title.textContent);
+  //   console.log(typeof title.textContent);
+  //   console.log([...title.textContent]);
+  //   setInterval(() => {
+  //     const titleContent = [...title.textContent];
+  //     // const newText = titleContent.slice(titleContent.length - 1);
+  //     titleContent.pop();
+  //     // console.log(titleContent);
+  //     // console.log(newText);
+  //     // title.textContent = .join();
+  //     title.textContent = titleContent.join("");
+  //   }, 1000);
+  // });
 </script>
 
-<body>
-  <div class="intro-title">xvargr</div>
+<section>
+  <div class="title-screen">
+    <div class="intro-title">xvargr</div>
+    <div>I know <span>technology</span></div>
+  </div>
 
   <h1>Hello World</h1>
   <p>
@@ -47,21 +67,28 @@
     beatae dignissimos totam autem suscipit cupiditate, dolore molestiae similique nostrum
     reiciendis neque fugiat unde?
   </p>
-</body>
+</section>
 
 <style lang="scss">
   @use "../styles//fonts.scss";
   @use "../styles/colors.scss";
 
-  body {
-    padding: 1rem;
-    background-color: colors.$dark;
+  section {
+    padding: 0 1rem;
+    background-color: colors.$darkest;
     color: colors.$lightest;
+  }
+
+  .title-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
 
   .intro-title {
     font-family: fonts.$logo;
     font-weight: 700;
     font-size: 6rem;
+    text-align: center;
   }
 </style>
