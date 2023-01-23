@@ -6,6 +6,11 @@
   import Footer from "../components/Footer.svelte";
 </script>
 
+<head>
+  <title>xvargr.dev</title>
+  <!-- <link rel="icon" href="favicon.png" type="image/x-icon" /> -->
+</head>
+
 <Navbar />
 <main>
   <slot />

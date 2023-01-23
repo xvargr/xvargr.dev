@@ -8,5 +8,6 @@
     height: calculated.$footer-height;
     background-color: colors.$darkest;
     color: colors.$lighter;
+    padding: 1rem;
   }
 </style>
