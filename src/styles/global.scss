@@ -1,9 +1,12 @@
 @use "./fonts.scss";
+@use "./colors.scss";
 
 body {
   font-family: fonts.$general;
+  background-color: colors.$darkest;
 }
 
 // body * {
 //   outline: rgb(0, 164, 240) solid 1px;
+//   opacity: 70%;
 // }
