@@ -29,7 +29,9 @@
   </div>
 
   <section>
-    <h2>Hello World</h2>
+    <h2 id="section1">
+      <span> Hello World </span>
+    </h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi debitis dolores
       amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos dolorum
@@ -39,10 +41,10 @@
       dolorum obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit,
       quas nulla numquam
     </p>
-  </section>
 
-  <section>
-    <h2>Hello World 2</h2>
+    <h2 id="section2">
+      <span> Hello World 2 </span>
+    </h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi debitis dolores
       amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos dolorum
@@ -59,17 +61,25 @@
   @use "../styles//fonts.scss";
   @use "../styles/colors.scss";
 
-  // section {
-  //   // display: flex;
-  // }
+  section {
+    margin-left: 100px;
+  }
 
   .content {
-    padding: 0 2rem;
+    padding-right: 1rem;
     background-color: colors.$darkest;
     color: colors.$lightest;
   }
 
+  h2 > span {
+    padding: 0.2rem;
+    margin-left: -0.15rem;
+    background-color: white;
+    color: black;
+  }
+
   .welcome {
+    margin-left: 1rem;
     display: flex;
     flex-direction: column;
     height: 100vh;
