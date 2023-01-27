@@ -21,96 +21,92 @@
   // });
 </script>
 
-<div class="content">
-  <div class="welcome">
-    <div class="alias">xvargr</div>
-    <div class="name">Akmal Shareef</div>
-    <div class="subtitle">I know <span id="technology">technology</span></div>
+<main>
+  <div class="content">
+    <div class="welcome">
+      <div class="alias">xvargr</div>
+      <div class="name">Akmal Shareef</div>
+      <div class="subtitle">I know <span id="technology">technology</span></div>
+    </div>
+
+    <section>
+      <h2 id="section1">
+        <span>Projects</span>
+      </h2>
+      <p style="width: full; height:30rem" />
+
+      <h2 id="section2">
+        <span>Technologies</span>
+      </h2>
+      <p style="width: full; height:30rem" />
+
+      <h2 id="section3">
+        <span>Experience</span>
+      </h2>
+      <p style="width: full; height:15rem" />
+
+      <h2 id="section4">
+        <span>CV</span>
+      </h2>
+      <p style="width: full; height:20rem" />
+
+      <h2 id="section5">
+        <span>Contact</span>
+      </h2>
+      <p style="width: full; height:30rem" />
+    </section>
   </div>
-
-  <section>
-    <h2 id="section1">
-      <span> Hello World </span>
-    </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi debitis dolores
-      amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos dolorum
-      obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit, quas
-      nulla numquam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi
-      debitis dolores amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos
-      dolorum obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit,
-      quas nulla numquam
-    </p>
-
-    <h2 id="section2">
-      <span> Hello World 2 </span>
-    </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi debitis dolores
-      amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos dolorum
-      obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit, quas
-      nulla numquam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi
-      debitis dolores amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos
-      dolorum obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit,
-      quas nulla numquam
-    </p>
-
-    <h2 id="section3">
-      <span> Hello World 3 </span>
-    </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi debitis dolores
-      amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos dolorum
-      obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit, quas
-      nulla numquam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi
-      debitis dolores amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos
-      dolorum obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit,
-      quas nulla numquam
-    </p>
-    <h2 id="section4">
-      <span> Hello World 4 </span>
-    </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi debitis dolores
-      amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos dolorum
-      obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit, quas
-      nulla numquam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi
-      debitis dolores amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos
-      dolorum obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit,
-      quas nulla numquam
-    </p>
-    <h2 id="section5">
-      <span> Hello World 5 </span>
-    </h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi debitis dolores
-      amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos dolorum
-      obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit, quas
-      nulla numquam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi vel commodi
-      debitis dolores amet adipisci nihil quas eaque harum, animi error necessitatibus officiis quos
-      dolorum obcaecati neque tempora id consectetur. Eveniet inventore consectetur quos, quia sit,
-      quas nulla numquam
-    </p>
-  </section>
-</div>
+</main>
 
 <style lang="scss">
   @use "../styles//fonts.scss";
   @use "../styles/colors.scss";
 
-  section {
-    margin-left: 100px;
+  main {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: auto;
   }
 
   .content {
+    // height: 100vh;
+    overflow-x: hidden;
+    // overflow-y: auto;
     padding-right: 1rem;
+    margin-left: 130px;
+
     background-color: colors.$darkest;
     color: colors.$lightest;
+    // background-color: darkblue;
   }
+
+  @media (min-width: 1024px) {
+    .content {
+      max-width: 70rem;
+
+      margin: auto;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .content {
+      max-width: 85rem;
+
+      margin: auto;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  // section {
+  //   margin-left: 100px;
+  // }
 
   h2 > span {
     padding: 0.2rem;
-    margin-left: -0.15rem;
     background-color: white;
     color: black;
   }
@@ -128,7 +124,14 @@
       font-weight: 700;
       font-size: 6rem;
       margin-bottom: -2.3rem;
-      text-decoration: underline colors.$emphasis 0.5rem;
+
+      // text-decoration: underline colors.$emphasis 0.5rem;
+      text-decoration-line: underline;
+      -webkit-text-decoration-line: underline;
+      text-decoration-color: colors.$emphasis;
+      -webkit-text-decoration-color: colors.$emphasis;
+      text-decoration-thickness: 0.5rem;
+      -webkit-text-decoration-thickness: 0.5rem;
     }
 
     .name {
