@@ -32,7 +32,7 @@
       else return "current";
     }
 
-    const navList = document.querySelector(".navItems");
+    const navList = document.querySelector(".navList");
     // console.log(navList);
 
     const sections = {};
@@ -48,6 +48,7 @@
       navElement.innerText = element.innerText;
       navElement.id = `nav-${element.id}`;
       navElement.style.backgroundColor = "white";
+      navElement.style.opacity = 1;
       navList.appendChild(navElement);
     });
 
@@ -152,12 +153,20 @@
         const newPosition = thisElement.getBoundingClientRect();
         sections[element].position = newPosition;
         sections[element].view = resolvePosition(newPosition);
+        navItems[`nav-${element}`].view = sections[element].view;
       }
       for (const element in navItems) {
         const thisElement = document.querySelector(`#${element}`);
         const newPosition = thisElement.getBoundingClientRect();
+
         navItems[element].position = newPosition;
-        navItems[element].view = resolvePosition(newPosition);
+        // navItems[element].view = resolvePosition(newPosition);
+
+        if (navItems[element].view === "current") {
+          thisElement.style.opacity = 1;
+        } else {
+          thisElement.style.opacity = 0.5;
+        }
       }
     }
 
@@ -271,10 +280,7 @@
 </script>
 
 <canvas id="canvas-nav" class:invisible={false} />
-<nav>
-  <Logo />
-  <div class="navItems" />
-</nav>
+<nav class="navList" />
 
 <style lang="scss">
   @use "../styles/colors.scss";
@@ -293,41 +299,33 @@
 
   nav {
     display: flex;
+
     width: 6rem;
     height: 100vh;
-    padding-top: 1rem;
-    flex-shrink: 0;
+    // height: calc(100vh - 5rem);
+    // padding: 1rem 0
     // z-index: 10;
 
     position: fixed;
     flex-direction: column;
-    // justify-content: space-between;
 
     // background-color: colors.$darkest;
     // color: colors.$darkest;
-    color: red;
-  }
+    color: white;
 
-  //   .logo {
-  //     height: 4rem;
-  //     flex-shrink: 0;
-  //   }
+    // height: calc(100vh - 20rem);
+    // margin: 2rem 0;
 
-  .navItems {
-    height: calc(100vh - 5rem);
-    margin-bottom: 10rem;
-    display: flex;
-    flex-direction: column;
+    // height: 50vh;
+    // margin-bottom: 10rem;
+    // flex-direction: column;
+    // display: flex;
     justify-content: space-around;
 
-    // .navItem {
-    //   background-color: white;
-    //   color: red;
-    // }
+    color: black;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    // width: auto;
   }
-
-  //   nav * {
-  //     // transform: rotate(-90deg);
-  //     outline: red solid 1px;
-  //   }
 </style>

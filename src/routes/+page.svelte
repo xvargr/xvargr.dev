@@ -81,15 +81,15 @@
     // background-color: darkblue;
   }
 
-  @media (min-width: 1024px) {
-    .content {
-      max-width: 70rem;
+  // @media (min-width: 768px) {
+  //   .content {
+  //     max-width: 70rem;
 
-      margin: auto;
-      left: 0;
-      right: 0;
-    }
-  }
+  //     margin: auto;
+  //     left: 0;
+  //     right: 0;
+  //   }
+  // }
 
   @media (min-width: 1536px) {
     .content {
