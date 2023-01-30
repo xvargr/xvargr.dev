@@ -1,51 +1,39 @@
 <script>
   import "../styles/reset.scss";
   import "../styles/global.scss";
+  import InfoCard from "./components/InfoCard.svelte";
 
-  // import Footer from "../components/Footer.svelte";
-  import CanvasNav from "../components/CanvasNav.svelte";
+  export let data;
+  const { backgroundImage } = data;
+
+  // console.log(backgroundImage);
 </script>
 
 <head>
   <title>xvargr.dev</title>
+  <meta
+    name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
+  />
   <!-- <link rel="icon" href="favicon.png" type="image/x-icon" /> -->
 </head>
 
-<div class="content-wrapper" />
+<div class="content">
+  <InfoCard {backgroundImage} />
+  <slot />
+</div>
 
-<CanvasNav />
-<slot />
-
-<!-- <Footer /> -->
 <style lang="scss">
-  .content-wrapper {
+  .content {
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
     display: flex;
+    flex-direction: column;
   }
-
-  // main {
-  //   // display: flex;
-  //   // flex-direction: column;
-  //   // min-height: 100vh;
-  //   // width: 200px;
-  // }
-
-  // @media (min-width: 1024px) {
-  //   main {
-  //     max-width: 70rem;
-
-  //     margin: auto;
-  //     left: 0;
-  //     right: 0;
-  //   }
-  // }
-
-  // @media (min-width: 1536px) {
-  //   main {
-  //     max-width: 85rem;
-
-  //     margin: auto;
-  //     left: 0;
-  //     right: 0;
-  //   }
-  // }
+  @media (min-width: 768px) {
+    .content {
+      flex-direction: row;
+    }
+  }
 </style>
