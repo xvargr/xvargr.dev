@@ -1,5 +1,26 @@
 <script>
+  import { onMount } from "svelte";
+  import { infoCardLoaded, headshotLoaded } from "../stores/states";
+
   export let backgroundImage;
+
+  onMount(() => {
+    const backgroundElement = document.querySelector(".backgroundImage");
+    if (backgroundElement.complete) infoCardLoaded.update(() => true);
+    else {
+      backgroundElement.addEventListener("load", () => {
+        infoCardLoaded.update(() => true);
+      });
+    }
+
+    const headshotElement = document.querySelector(".headshot");
+    if (headshotElement.complete) headshotLoaded.update(() => true);
+    else {
+      headshotElement.addEventListener("load", () => {
+        headshotLoaded.update(() => true);
+      });
+    }
+  });
 </script>
 
 <header>
@@ -56,6 +77,7 @@
       }
 
       .information {
+        color: colors.$grey;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -91,6 +113,7 @@
         }
 
         .information {
+          font-size: larger;
           margin-left: 0;
           margin-top: 4rem;
         }
