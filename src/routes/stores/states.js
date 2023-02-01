@@ -1,5 +1,6 @@
 import { writable, derived } from "svelte/store";
 
+// load states
 export const infoCardLoaded = writable(false);
 export const headshotLoaded = writable(false);
 
@@ -11,4 +12,8 @@ export const pageLoaded = derived(
   },
 );
 
+// colors
 export const themeColor = writable("#000000");
+
+// scroll position
+export const isScrolledToTop = writable(true);
