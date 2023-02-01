@@ -1,11 +1,13 @@
 <script>
   import { onMount } from "svelte";
-  import { infoCardLoaded, headshotLoaded } from "../stores/states";
+  import { pageLoaded, infoCardLoaded, headshotLoaded, isScrolledToTop } from "../stores/states";
 
   export let backgroundImage;
 
+  let setHeaderMinimized;
+
   onMount(() => {
-    const backgroundElement = document.querySelector(".backgroundImage");
+    const backgroundElement = document.querySelector(".background-image");
     if (backgroundElement.complete) infoCardLoaded.update(() => true);
     else {
       backgroundElement.addEventListener("load", () => {
@@ -20,12 +22,44 @@
         headshotLoaded.update(() => true);
       });
     }
+
+    // const main = document.querySelector("main");
+    // main.addEventListener("scroll", () => console.log("scroll"));
+
+    setHeaderMinimized = function (newBooleanState) {
+      const navItems = document.querySelectorAll(".nav-item");
+
+      navItems.forEach((element) => {
+        if (newBooleanState) element.classList.add("minimized");
+        else element.classList.remove("minimized");
+      });
+    };
   });
+
+  $: {
+    // const navItems = document.querySelectorAll(".nav-item");
+    // console.log(document);
+    if ($pageLoaded) {
+      if ($isScrolledToTop) {
+        console.log("toggle to true");
+        setHeaderMinimized(false);
+        // navItems.forEach((element) => {
+        //   element.classList.add("minimized");
+        // });
+      } else {
+        console.log("toggle to false");
+        setHeaderMinimized(true);
+        // navItems.forEach((element) => {
+        //   element.classList.remove("minimized");
+        // });
+      }
+    }
+  }
 </script>
 
 <header>
-  <img class="backgroundImage" src={backgroundImage.src.original} alt={backgroundImage.alt} />
-  <div class="infoCard">
+  <img class="background-image" src={backgroundImage.src.original} alt={backgroundImage.alt} />
+  <div class="info-card">
     <img class="headshot" src="headshot.jpg" alt="headshot" />
     <div class="information">
       <span>Akmal Shareef</span>
@@ -43,20 +77,20 @@
     width: 100vw;
     height: 30vh;
     flex-shrink: 0;
-    // background-color: gray;
 
-    .backgroundImage {
+    .background-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .infoCard {
+    .info-card {
       position: absolute;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      width: fit-content;
+      width: 80%;
+      max-width: 25rem;
       height: 70%;
       min-width: 50%;
       inset: 0;
@@ -97,11 +131,10 @@
       height: 100vh;
       width: 50vw;
 
-      .infoCard {
+      .info-card {
         height: fit-content;
         width: fit-content;
         min-width: auto;
-        // min-height: 30rem;
         padding: 4rem;
 
         flex-direction: column;
