@@ -12,12 +12,6 @@ function hex2hsl(hexString) {
     f = 1 - Math.abs(v + v - c - 1);
   let h = c && (v == r ? (g - b) / c : v == g ? 2 + (b - r) / c : 4 + (r - g) / c);
 
-  // console.log("hex", hexString, "=> hsl", [
-  //   60 * (h < 0 ? h + 6 : h),
-  //   f ? c / f : 0,
-  //   (v + v - c) / 2,
-  // ]);
-
   return [60 * (h < 0 ? h + 6 : h), f ? c / f : 0, (v + v - c) / 2];
 }
 
@@ -35,8 +29,6 @@ function hsl2hex(hslArray) {
       .padStart(2, "0"); // convert to Hex and prefix "0" if needed
   };
 
-  // console.log("hsl", hslArray, "=> hex", `#${f(0)}${f(8)}${f(4)}`);
-
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
@@ -50,6 +42,18 @@ function centerLightness(hslArray) {
   return [...hslArray];
 }
 
+function getTextTheme(hslArray) {
+  const l = hslArray[2];
+  if (l > 0.5) return "#0e0e0e";
+  else return "#dbdbdb";
+}
+
+function getHighlightTheme(hslArray) {
+  let [h, s, l] = hslArray;
+  l = l + 0.15;
+  return hsl2hex([h, s, l]);
+}
+
 export async function load() {
   async function fetchBackground() {
     const client = createClient(PEXELS_KEY);
@@ -58,14 +62,21 @@ export async function load() {
       query: "mountain",
       size: "large",
       orientation: "portrait",
-      page: Math.floor(Math.random() * 250),
+      page: Math.floor(Math.random() * 200),
       per_page: 1,
     });
     return result.photos[0];
   }
 
   const fetchedBackground = await fetchBackground();
-  const balancedTheme = hsl2hex(centerLightness(hex2hsl(fetchedBackground.avg_color)));
 
-  return { balancedTheme, backgroundImage: fetchedBackground };
+  const hslAvgColor = hex2hsl(fetchedBackground.avg_color);
+  const balancedTheme = hsl2hex(centerLightness(hslAvgColor));
+  const textTheme = getTextTheme(hslAvgColor);
+  const highlightTheme = getHighlightTheme(hslAvgColor);
+
+  return {
+    theme: { background: balancedTheme, text: textTheme, highlight: highlightTheme },
+    backgroundImage: fetchedBackground,
+  };
 }

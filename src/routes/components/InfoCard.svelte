@@ -1,17 +1,15 @@
 <script>
   import { onMount } from "svelte";
-  import { pageLoaded, infoCardLoaded, headshotLoaded, isScrolledToTop } from "../stores/states";
+  import { backgroundImageLoaded, headshotLoaded, isScrolledToTop } from "../../stores/states";
 
   export let backgroundImage;
 
-  let setHeaderMinimized;
-
   onMount(() => {
     const backgroundElement = document.querySelector(".background-image");
-    if (backgroundElement.complete) infoCardLoaded.update(() => true);
+    if (backgroundElement.complete) backgroundImageLoaded.update(() => true);
     else {
       backgroundElement.addEventListener("load", () => {
-        infoCardLoaded.update(() => true);
+        backgroundImageLoaded.update(() => true);
       });
     }
 
@@ -22,134 +20,118 @@
         headshotLoaded.update(() => true);
       });
     }
-
-    // const main = document.querySelector("main");
-    // main.addEventListener("scroll", () => console.log("scroll"));
-
-    setHeaderMinimized = function (newBooleanState) {
-      const navItems = document.querySelectorAll(".nav-item");
-
-      navItems.forEach((element) => {
-        if (newBooleanState) element.classList.add("minimized");
-        else element.classList.remove("minimized");
-      });
-    };
   });
-
-  $: {
-    // const navItems = document.querySelectorAll(".nav-item");
-    // console.log(document);
-    if ($pageLoaded) {
-      if ($isScrolledToTop) {
-        console.log("toggle to true");
-        setHeaderMinimized(false);
-        // navItems.forEach((element) => {
-        //   element.classList.add("minimized");
-        // });
-      } else {
-        console.log("toggle to false");
-        setHeaderMinimized(true);
-        // navItems.forEach((element) => {
-        //   element.classList.remove("minimized");
-        // });
-      }
-    }
-  }
 </script>
 
-<header>
+<div>
   <img class="background-image" src={backgroundImage.src.original} alt={backgroundImage.alt} />
-  <div class="info-card">
+  <div class="info-card" class:card-minimized={!$isScrolledToTop && window.innerWidth <= 768}>
     <img class="headshot" src="headshot.jpg" alt="headshot" />
     <div class="information">
       <span>Akmal Shareef</span>
       <span>fullstack developer</span>
     </div>
   </div>
-</header>
+</div>
 
 <style lang="scss">
   @use "../../styles/fonts.scss";
   @use "../../styles/colors.scss";
 
-  header {
-    position: relative;
+  .background-image {
     width: 100vw;
-    height: 30vh;
-    flex-shrink: 0;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    .background-image {
-      width: 100%;
+  .info-card {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    max-width: 25rem;
+    min-width: 50%;
+    height: 70%;
+    inset: 0;
+    margin: auto;
+    padding: 1rem;
+
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+    background-color: #ffffff5b;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+
+    transition: width 200ms, height, 200ms;
+
+    .headshot {
+      width: auto;
       height: 100%;
-      object-fit: cover;
+      border-radius: 99rem;
     }
 
-    .info-card {
-      position: absolute;
+    .information {
+      color: colors.$grey;
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
       align-items: center;
-      width: 80%;
-      max-width: 25rem;
-      height: 70%;
-      min-width: 50%;
-      inset: 0;
-      margin: auto;
-      padding: 1rem;
+      font-family: fonts.$emphasis;
+      font-weight: 700;
+      margin-left: 1rem;
 
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-
-      background-color: #ffffff5b;
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
-
-      .headshot {
-        width: auto;
-        height: 100%;
-        border-radius: 99rem;
-      }
-
-      .information {
-        color: colors.$grey;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: fonts.$emphasis;
-        font-weight: 700;
-        margin-left: 1rem;
-
-        :nth-child(2) {
-          font-weight: 500;
-        }
+      :nth-child(2) {
+        font-weight: 500;
       }
     }
   }
 
+  .card-minimized {
+    width: 90%;
+    max-width: 100%;
+    height: 80%;
+
+    .headshot {
+      display: none;
+    }
+  }
+
   @media (min-width: 768px) {
-    header {
+    .background-image {
+      width: 100vw;
       height: 100vh;
-      width: 50vw;
+    }
 
-      .info-card {
-        height: fit-content;
-        width: fit-content;
-        min-width: auto;
-        padding: 4rem;
+    .info-card {
+      height: fit-content;
+      width: fit-content;
+      min-width: auto;
+      padding: 3rem;
 
-        flex-direction: column;
-        justify-content: space-around;
+      flex-direction: column;
+      justify-content: space-around;
 
-        .headshot {
-          width: 15rem;
-          height: auto;
-        }
+      .headshot {
+        width: 15rem;
+        height: auto;
+      }
 
-        .information {
-          font-size: larger;
-          margin-left: 0;
-          margin-top: 4rem;
-        }
+      .information {
+        font-size: larger;
+        margin-left: 0;
+        margin-top: 3rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .info-card {
+      padding: 4rem;
+      margin: auto;
+
+      .information {
+        margin-top: 4rem;
       }
     }
   }
