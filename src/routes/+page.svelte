@@ -1,12 +1,12 @@
 <script>
-  import { themeColor } from "./stores/states";
+  import { themeColor } from "../stores/states";
 
   // export let data;
   // $: console.log($themeColor);
 </script>
 
 <article>
-  <h2 style={`color: ${$themeColor};`}>Landing</h2>
+  <h2 style={`color: ${$themeColor.background};`}>Landing</h2>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias tempora exercitationem perspiciatis
   corrupti id saepe sit minus asperiores quas vero, accusamus rerum molestiae quasi voluptate. Ullam
   quam earum nostrum alias! Odit minus nobis recusandae minima expedita exercitationem illo, nihil explicabo

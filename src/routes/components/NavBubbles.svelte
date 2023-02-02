@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { themeColor } from "../stores/states";
+  import { themeColor } from "../../stores/states";
 
   import Mail from "./svg/Mail.svelte";
   import Beaker from "./svg/Beaker.svelte";
@@ -10,30 +10,36 @@
   onMount(() => {
     const navItems = document.querySelectorAll(".nav-item");
     navItems.forEach((element) => {
-      element.style.backgroundColor = $themeColor;
+      element.style.backgroundColor = $themeColor.background;
+      element.style.color = $themeColor.text;
+      element.style.setProperty("--highlight-color", $themeColor.highlight);
     });
   });
 </script>
 
 <nav>
-  <div class="nav-item">
+  <a class="nav-item" href="/">
     <HomeSVG />
-  </div>
-  <div class="nav-item">
+  </a>
+  <a class="nav-item" href="/projects">
     <Beaker />
-  </div>
-  <div class="nav-item">
+  </a>
+  <a class="nav-item" href="/experience">
     <Briefcase />
-  </div>
-  <div class="nav-item">
+  </a>
+  <a class="nav-item" href="/contact">
     <span>
       <Mail />
     </span>
-  </div>
+  </a>
 </nav>
 
 <style lang="scss">
   @use "../../styles/colors.scss";
+
+  :root {
+    --highlight-color: #818181;
+  }
 
   nav {
     position: absolute;
@@ -52,13 +58,11 @@
       padding: 0.6rem;
       color: colors.$grey;
     }
-  }
 
-  //   @media (min-height: 1920px) {
-  //     nav {
-  //       background-color: red;
-  //     }
-  //   }
+    > .nav-item:hover {
+      background-color: var(--highlight-color) !important; // js assign highlight bodge
+    }
+  }
 
   @media (min-width: 640px) {
     nav {
@@ -72,6 +76,18 @@
         margin: 0.5rem;
         padding: 0.9rem;
       }
+    }
+  }
+
+  @media (min-width: 768px) {
+    nav {
+      width: fit-content;
+      height: fit-content;
+      margin-top: 0.4rem;
+      top: 0;
+      right: -3rem;
+      flex-direction: column;
+      justify-content: start;
     }
   }
 </style>

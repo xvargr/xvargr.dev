@@ -1,38 +1,21 @@
 <script>
   // import { onMount } from "svelte";
-  import { pageLoaded, themeColor, isScrolledToTop } from "./stores/states";
+  import { pageLoaded, themeColor, isScrolledToTop } from "../stores/states";
   import "../styles/reset.scss";
   import "../styles/global.scss";
   import InfoCard from "./components/InfoCard.svelte";
   import NavBubbles from "./components/NavBubbles.svelte";
 
   export let data;
-  const { backgroundImage, balancedTheme } = data;
+  const { backgroundImage, theme } = data;
 
-  // $: console.log("pageLoaded", $pageLoaded);
-
-  // pageLoaded.subscribe;
-
-  // console.log(backgroundImage);
-  // console.log(backgroundImage.avg_color);
-
-  // generatedTheme.update(() => backgroundImage.avg_color);
-
-  // set theme color from server data
-  themeColor.update(() => balancedTheme);
-
-  // console.log($generatedTheme);
-
-  // function setLoaded() {
-  //   pageLoaded = true;
-  // }
-  // onMount(() => {
-  //   console.log("mounted");
-  //   window.addEventListener("load", () => {
-  //     console.log("loaded");
-  //     pageLoaded = true;
-  //   });
-  // });
+  themeColor.update(() => {
+    return {
+      background: theme.background || "#c29588",
+      text: theme.text || "#292929",
+      highlight: theme.highlight || "#f5b9a8",
+    };
+  });
 
   // track scroll position, used for shrinking header on mobile
   function trackScroll(e) {
@@ -42,7 +25,6 @@
       isScrolledToTop.update(() => false);
     }
   }
-  $: console.log("is top? ", $isScrolledToTop);
 </script>
 
 <svelte:head>
@@ -53,30 +35,25 @@
   />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> NOT WORKING, 404 if href contains "touch-icon" -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png" /> -->
-  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/touchicon.png" /> -->
-  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/1-1.png" /> -->
   <link rel="apple-touch-icon" sizes="180x180" href="/touch-ico.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content={balancedTheme} />
+  <meta name="theme-color" content={theme.background || "#c29588"} />
   <meta name="description" content="Portfolio of Akmal Shareef" />
 </svelte:head>
 
 {#if !$pageLoaded}
+  <!-- todo: full loading modal -->
   <div style="background-color: cyan;">loading...</div>
-  <!-- full loading modal -->
 {/if}
 <div class="content">
-  <div>
+  <header class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
     <InfoCard {backgroundImage} />
     <NavBubbles />
-  </div>
+  </header>
   <main on:scroll={(e) => trackScroll(e)}>
-    <!-- <slot theme={"hello"} /> -->
     <slot />
   </main>
 </div>
@@ -92,9 +69,21 @@
     display: flex;
     flex-direction: column;
 
+    header {
+      position: relative;
+      height: 30vh;
+      max-height: 20rem;
+      flex-shrink: 0;
+      transition: height 250ms ease;
+    }
+
+    .minimized {
+      height: 15vh;
+    }
+
     main {
       position: relative;
-      height: 100%;
+      flex-grow: 1;
       padding: 2rem;
       padding-bottom: 6rem;
       overflow-y: scroll;
@@ -102,18 +91,20 @@
       background-color: white;
       color: #242424;
     }
-
-    div:nth-of-type(1) {
-      position: relative;
-    }
   }
 
   @media (min-width: 768px) {
     .content {
       flex-direction: row;
 
+      header {
+        height: 100vh;
+        max-height: 100vh;
+        width: 40vw;
+      }
+
       main {
-        width: 50vw;
+        padding: 3rem;
       }
     }
   }
