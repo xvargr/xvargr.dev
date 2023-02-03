@@ -1,10 +1,14 @@
 <script>
   import { onMount } from "svelte";
   import { backgroundImageLoaded, headshotLoaded, isScrolledToTop } from "../../stores/states";
+  import RandomEmoji from "./RandomEmoji.svelte";
+  import BubbleSvg from "./svg/bubbleSVG.svelte";
 
   export let backgroundImage;
+  console.log(backgroundImage);
 
   onMount(() => {
+    // can't use svelte on:load, no access to check if image is cached, so load state is indefinitely false
     const backgroundElement = document.querySelector(".background-image");
     if (backgroundElement.complete) backgroundImageLoaded.update(() => true);
     else {
@@ -25,13 +29,24 @@
 
 <div>
   <img class="background-image" src={backgroundImage.src.original} alt={backgroundImage.alt} />
-  <div class="info-card" class:card-minimized={!$isScrolledToTop && window.innerWidth <= 768}>
-    <img class="headshot" src="headshot.jpg" alt="headshot" />
+  <div class="info-card" class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
+    <div class="image-with-icon">
+      <span class="bubble">
+        <span class="emoji">
+          <RandomEmoji />
+        </span>
+        <BubbleSvg />
+      </span>
+      <img class="headshot" src="headshot.jpg" alt="headshot" />
+    </div>
     <div class="information">
       <span>Akmal Shareef</span>
-      <span>fullstack developer</span>
+      <span>web developer</span>
     </div>
   </div>
+  <a class="image-attribution" href={backgroundImage.photographer_url}
+    >photo by {backgroundImage.photographer}</a
+  >
 </div>
 
 <style lang="scss">
@@ -41,7 +56,18 @@
   .background-image {
     width: 100vw;
     height: 100%;
+    max-height: 50vh;
     object-fit: cover;
+  }
+
+  .image-attribution {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: colors.$grey;
+    // background-color: rgba(129, 129, 129, 0.445);
   }
 
   .info-card {
@@ -66,10 +92,32 @@
 
     transition: width 200ms, height, 200ms;
 
-    .headshot {
-      width: auto;
+    .image-with-icon {
+      position: relative;
       height: 100%;
-      border-radius: 99rem;
+
+      .bubble {
+        position: absolute;
+        top: -1rem;
+        right: -1.5rem;
+        width: 4rem;
+
+        .emoji {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          inset: 0;
+          // margin: auto;
+          margin-bottom: 0.3rem;
+          font-size: 1.5rem;
+        }
+      }
+
+      .headshot {
+        height: 100%;
+        border-radius: 99rem;
+      }
     }
 
     .information {
@@ -87,12 +135,12 @@
     }
   }
 
-  .card-minimized {
+  .info-card.minimized {
     width: 90%;
     max-width: 100%;
     height: 80%;
 
-    .headshot {
+    .image-with-icon {
       display: none;
     }
   }
@@ -101,6 +149,7 @@
     .background-image {
       width: 100vw;
       height: 100vh;
+      max-height: none;
     }
 
     .info-card {
@@ -112,9 +161,17 @@
       flex-direction: column;
       justify-content: space-around;
 
-      .headshot {
-        width: 15rem;
-        height: auto;
+      .image-with-icon {
+        .bubble {
+          top: -1rem;
+          right: -1rem;
+          width: 5rem;
+        }
+
+        .headshot {
+          width: 15rem;
+          height: auto;
+        }
       }
 
       .information {
