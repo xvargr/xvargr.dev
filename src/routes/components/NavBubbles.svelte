@@ -2,10 +2,10 @@
   import { onMount } from "svelte";
   import { themeColor } from "../../stores/states";
 
-  import Mail from "./svg/Mail.svelte";
-  import Beaker from "./svg/Beaker.svelte";
+  import Mail from "./svg/MailSVG.svelte";
   import HomeSVG from "./svg/HomeSVG.svelte";
-  import Briefcase from "./svg/Briefcase.svelte";
+  import Briefcase from "./svg/BriefcaseSVG.svelte";
+  import CodeSvg from "./svg/CodeSVG.svelte";
 
   onMount(() => {
     const navItems = document.querySelectorAll(".nav-item");
@@ -18,16 +18,16 @@
 </script>
 
 <nav>
-  <a class="nav-item" href="/">
+  <a class="nav-item" href="/" title="home">
     <HomeSVG />
   </a>
-  <a class="nav-item" href="/projects">
-    <Beaker />
+  <a class="nav-item" href="/projects" title="projects">
+    <CodeSvg />
   </a>
-  <a class="nav-item" href="/experience">
+  <a class="nav-item" href="/experience" title="experience">
     <Briefcase />
   </a>
-  <a class="nav-item" href="/contact">
+  <a class="nav-item" href="/contact" title="contact and CV">
     <span>
       <Mail />
     </span>
@@ -57,6 +57,7 @@
       border-radius: 99rem;
       padding: 0.6rem;
       color: colors.$grey;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     }
 
     > .nav-item:hover {

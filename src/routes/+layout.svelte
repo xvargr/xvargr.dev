@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-  <title>xvargr.dev || Akmal Shareef</title>
+  <title>xvargr.dev</title>
   <meta
     name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
@@ -65,7 +65,7 @@
   .content {
     height: 100vh;
     width: 100vw;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 
@@ -86,7 +86,7 @@
       flex-grow: 1;
       padding: 2rem;
       padding-bottom: 6rem;
-      overflow-y: scroll;
+      overflow-y: auto;
       overflow-x: hidden;
       background-color: white;
       color: #242424;
