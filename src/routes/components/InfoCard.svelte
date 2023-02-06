@@ -5,7 +5,7 @@
   import BubbleSvg from "./svg/bubbleSVG.svelte";
 
   export let backgroundImage;
-  console.log(backgroundImage);
+  // console.log(backgroundImage);
 
   onMount(() => {
     // can't use svelte on:load, no access to check if image is cached, so load state is indefinitely false
@@ -44,9 +44,12 @@
       <span>web developer</span>
     </div>
   </div>
-  <a class="image-attribution" href={backgroundImage.photographer_url}
-    >photo by {backgroundImage.photographer}</a
-  >
+  <a
+    class="image-attribution"
+    class:hidden={!$isScrolledToTop && window.innerWidth <= 768}
+    href={backgroundImage.photographer_url}
+    >photo by {backgroundImage.photographer}
+  </a>
 </div>
 
 <style lang="scss">
@@ -62,12 +65,12 @@
 
   .image-attribution {
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
     font-size: 0.8rem;
     font-weight: 600;
-    color: colors.$grey;
-    // background-color: rgba(129, 129, 129, 0.445);
+    color: black;
+    background-color: #e9e9e93d;
   }
 
   .info-card {
@@ -145,11 +148,21 @@
     }
   }
 
+  .image-attribution.hidden {
+    display: none;
+  }
+
   @media (min-width: 768px) {
     .background-image {
       width: 100vw;
       height: 100vh;
       max-height: none;
+    }
+
+    .image-attribution {
+      top: auto;
+      bottom: 0;
+      right: 0;
     }
 
     .info-card {

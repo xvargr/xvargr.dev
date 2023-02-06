@@ -29,6 +29,7 @@
 
 <svelte:head>
   <title>xvargr.dev</title>
+  <meta name="description" content="Portfolio of Akmal Shareef" />
   <meta
     name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
@@ -41,7 +42,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content={theme.background || "#c29588"} />
-  <meta name="description" content="Portfolio of Akmal Shareef" />
 </svelte:head>
 
 {#if !$pageLoaded}
