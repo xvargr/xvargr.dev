@@ -1,12 +1,11 @@
 <script>
   import { page } from "$app/stores";
   import { themeColor } from "../stores/states";
-  console.error($page);
 </script>
 
 <article>
-  <h2 style={`color: ${$themeColor.background};`}>ERROR</h2>
-  {$page}
+  <h2 style={`color: ${$themeColor.background};`}>Error - {$page.status}</h2>
+  {$page.error.message}
 </article>
 
 <style lang="scss">

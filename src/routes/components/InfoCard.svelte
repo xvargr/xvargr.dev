@@ -5,7 +5,6 @@
   import BubbleSvg from "./svg/bubbleSVG.svelte";
 
   export let backgroundImage;
-  // console.log(backgroundImage);
 
   onMount(() => {
     // can't use svelte on:load, no access to check if image is cached, so load state is indefinitely false
@@ -67,6 +66,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    padding: 0.1rem 0.3rem;
     font-size: 0.8rem;
     font-weight: 600;
     color: black;

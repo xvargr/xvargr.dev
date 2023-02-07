@@ -12,7 +12,8 @@
     </p>
 
     <p>
-      My other interests are 3D modeling & 3D printing, PC building, gaming, and mechanical watches
+      My other interests are 3D modeling & 3D printing, PC building, gaming, cooking, and mechanical
+      watches
     </p>
   </div>
 </article>
@@ -32,14 +33,21 @@
     p {
       margin-bottom: 0.5rem;
     }
+  }
 
-    @media (min-width: 640px) {
+  @media (min-width: 640px) {
+    article {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
 
       padding: 4rem;
+
+      > div {
+        max-width: 40rem;
+      }
     }
   }
 </style>
