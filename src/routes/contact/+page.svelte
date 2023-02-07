@@ -1,6 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { themeColor } from "../../stores/states";
+  import GithubSvg from "../components/svg/GithubSVG.svelte";
+  import LinkedinSvg from "../components/svg/LinkedinSVG.svelte";
+  import MailSvg from "../components/svg/MailSVG.svelte";
 
   onMount(() => {
     const submitButton = document.querySelector("#contact-submit-button");
@@ -10,23 +13,48 @@
 
 <article>
   <section>
-    <h2 style={`color: ${$themeColor.background};`}>Email ✉️</h2>
-    <p />
-    <p>
-      Feel free to drop me an email at
-      <!-- todo self host fonts and assets -->
+    <h2 style={`color: ${$themeColor.background};`}>Contact ✉️</h2>
+    <div class="contact-container ">
       <a
-        href="&#109;&#97;&#105;&#108;&#116;&#111;&colon;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&commat;&#120;&#118;&#97;&#114;&#103;&#114;&period;&#100;&#101;&#118;"
-        >&#99;&#111;&#110;&#116;&#97;&#99;&#116;&commat;&#120;&#118;&#97;&#114;&#103;&#114;&period;&#100;&#101;&#118;</a
+        class="link-button linkedin"
+        target="_blank"
+        rel="noreferrer"
+        href="https://www.linkedin.com/in/akmal-shareef-53b914264/"
       >
-    </p>
-  </section>
-
-  <section>
-    <h2 style={`color: ${$themeColor.background};`}>Links 🔗</h2>
-    <p>LinkedIn</p>
-    <p>Github</p>
-    <p>whatsapp?</p>
+        <span class="icon">
+          <LinkedinSvg />
+        </span>
+        <span>LinkedIn</span>
+      </a>
+      <a
+        class="link-button github"
+        target="_blank"
+        rel="noreferrer"
+        href="https://github.com/xvargr"
+      >
+        <span class="icon">
+          <GithubSvg />
+        </span>
+        <span>GitHub</span>
+      </a>
+      <button
+        class="link-button email"
+        on:click={() => {
+          window.location.href = [..."ved.rgravx@tcatnoc:otliam"].reverse().join("");
+        }}
+        on:mouseenter={(e) => {
+          e.target.childNodes[2].innerText = [..."ved.rgravx@tcatnoc"].reverse().join("");
+        }}
+        on:mouseleave={(e) => {
+          e.target.childNodes[2].innerText = "email";
+        }}
+      >
+        <span class="icon">
+          <MailSvg />
+        </span>
+        <span>email</span>
+      </button>
+    </div>
   </section>
 
   <section>
@@ -67,10 +95,6 @@
 <style lang="scss">
   @use "../../styles/colors.scss";
 
-  :root {
-    --highlight-color: #818181;
-  }
-
   article {
     color: colors.$grey;
 
@@ -79,57 +103,104 @@
 
       h2 {
         font-size: 1.5rem;
-        // text-decoration: underline 4px;
+        margin-bottom: 0.5rem;
       }
-    }
 
-    form {
-      display: flex;
-      width: 100%;
-      justify-content: center;
-
-      .form-container {
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
         width: 100%;
         max-width: 40rem;
+        margin: auto;
+        justify-content: space-around;
+
+        .link-button {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          margin: 0.4rem 0.2rem;
+          font-weight: 500;
+          text-decoration: none;
+          border: none;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          transition: background-color 100ms;
+
+          .icon {
+            display: block;
+            width: 2.5rem;
+            margin-right: 1rem;
+          }
+        }
+
+        .linkedin {
+          background-color: #0e78aa;
+          color: white;
+        }
+        .linkedin:hover {
+          background-color: #1089c1;
+        }
+
+        .github {
+          background-color: #181818;
+          color: white;
+        }
+        .github:hover {
+          background-color: #2e2e2e;
+        }
+
+        .email {
+          background-color: #9dabaf;
+          color: colors.$grey;
+          > span:nth-child(2) {
+            width: 10rem;
+          }
+        }
+        .email:hover {
+          background-color: #abb7ba;
+        }
+      }
+
+      form {
         display: flex;
-        flex-direction: column;
-      }
+        width: 100%;
+        justify-content: center;
 
-      input,
-      textarea {
-        padding: 0.2rem;
-        background-color: white;
-        border: 1px solid rgb(100, 100, 100);
-        border-radius: 0.5rem;
-      }
+        .form-container {
+          width: 100%;
+          max-width: 40rem;
+          display: flex;
+          flex-direction: column;
 
-      textarea {
-        // border-radius: 0;
-        resize: none;
-      }
+          input,
+          textarea {
+            padding: 0.2rem;
+            margin-bottom: 0.3rem;
+            background-color: white;
+            border: 1px solid #646464;
+            border-radius: 0.5rem;
+          }
 
-      button {
-        font-weight: 600;
-        margin-top: 1rem;
-        border: none;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        // background-color: cyan;
-      }
-      button:hover {
-        background-color: var(--highlight-color) !important; // js assign highlight bodge
-      }
+          textarea {
+            resize: none;
+          }
 
-      *:focus {
-        // outline: none;
-      }
+          button {
+            margin-top: 1rem;
+            padding: 0.4rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: background-color 100ms;
+          }
 
-      *:valid {
-        // outline: 2px solid green;
-      }
-
-      *:invalid {
-        // outline: 2px solid red;
+          button:hover {
+            background-color: var(--highlight-color) !important; // js assign highlight bodge
+          }
+        }
       }
     }
   }

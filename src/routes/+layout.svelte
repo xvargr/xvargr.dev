@@ -46,7 +46,7 @@
 
 {#if !$pageLoaded}
   <!-- todo: full loading modal -->
-  <div style="background-color: cyan;">loading...</div>
+  <div style="background-color: yellow;">loading...</div>
 {/if}
 <div class="content">
   <header class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
@@ -106,6 +106,13 @@
       main {
         padding: 3rem;
       }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .content > main {
+      // background-color: gray !important;
+      padding: 5rem 8rem;
     }
   }
 </style>

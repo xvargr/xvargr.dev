@@ -60,8 +60,8 @@ export async function load() {
 
     const result = await client.photos.search({
       query: "mountain",
-      size: "large",
-      // orientation: "portrait",
+      size: "medium",
+      orientation: "portrait",
       page: Math.floor(Math.random() * 200),
       per_page: 1,
     });

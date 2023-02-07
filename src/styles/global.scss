@@ -1,6 +1,7 @@
 @use "./fonts.scss";
 @use "./colors.scss";
 
+// mobile overscroll workaround
 html {
   position: fixed;
   overflow: hidden;
@@ -21,4 +22,9 @@ html * {
 
 body {
   font-family: fonts.$general;
+}
+
+// eliminate svg whitespace
+svg {
+  display: block;
 }
