@@ -6,8 +6,8 @@
   import MailSvg from "../components/svg/MailSVG.svelte";
 
   onMount(() => {
-    const submitButton = document.querySelector("#contact-submit-button");
-    submitButton.style.setProperty("--highlight-color", $themeColor.highlight);
+    const root = document.documentElement;
+    root.style.setProperty("--highlight-color", $themeColor.highlight);
   });
 </script>
 
