@@ -1,8 +1,13 @@
 <script>
   import { themeColor } from "../../stores/states";
+
+  // const projects = [{ name: "", description: "", technologies: [""], link: "", retrospective: "" }];
+  export let data;
+  console.log(data.github);
 </script>
 
 <article>
+  <h2>{data.github}</h2>
   <h2 style={`color: ${$themeColor.background};`}>projects</h2>
   <ul>
     <li>1</li>

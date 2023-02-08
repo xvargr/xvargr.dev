@@ -1,5 +1,5 @@
 <script>
-  const emojis = ["🐺", "🦕", "🐍", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗", "ඞ", "🇲🇾"];
+  const emojis = ["🐺", "🦕", "🐍", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗", "🇲🇾"];
 
   function getRandomEmoji() {
     const length = emojis.length;

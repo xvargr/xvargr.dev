@@ -23,6 +23,7 @@
   },
   "type": "module",
   "dependencies": {
+    "octokit": "^2.0.14",
     "pexels": "^1.4.0",
     "svelte-preprocess": "^5.0.1"
   }
