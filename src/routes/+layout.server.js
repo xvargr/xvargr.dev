@@ -1,5 +1,8 @@
+import { PEXELS_KEY, GITHUB_KEY } from "$env/static/private";
 import { createClient } from "pexels";
-import { PEXELS_KEY } from "$env/static/private";
+import { Octokit } from "octokit";
+
+const octokit = new Octokit({ auth: GITHUB_KEY, userAgent: "xvargr.dev" });
 
 function hex2hsl(hexString) {
   // https://stackoverflow.com/a/54071699/18863465
@@ -68,7 +71,28 @@ export async function load() {
     return result.photos[0];
   }
 
+  const fetchRepoData = async () => {
+    const repos = await octokit.request("GET /users/{username}/repos", { username: "xvargr" });
+    const additions = { 515840292: { retrospective: "msg" }, 490190223: { retrospective: "pin" } };
+
+    for (const id in additions) {
+      const index = repos.data.findIndex((repo) => repo.id === Number(id));
+
+      if (index === -1) {
+        console.warn(`!!! failed to append additional information to repository ${id}, not found`);
+        return null;
+      }
+
+      Object.keys(additions[id]).forEach((key) => {
+        repos.data[index][key] = additions[id][key];
+      });
+    }
+
+    return repos.data;
+  };
+
   const fetchedBackground = await fetchBackground();
+  const repoData = await fetchRepoData();
 
   const hslAvgColor = hex2hsl(fetchedBackground.avg_color);
   const balancedTheme = hsl2hex(centerLightness(hslAvgColor));
@@ -78,5 +102,6 @@ export async function load() {
   return {
     theme: { background: balancedTheme, text: textTheme, highlight: highlightTheme },
     backgroundImage: fetchedBackground,
+    repos: repoData,
   };
 }

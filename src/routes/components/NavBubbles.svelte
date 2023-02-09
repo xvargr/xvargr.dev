@@ -8,15 +8,12 @@
   import CodeSvg from "./svg/CodeSVG.svelte";
 
   onMount(() => {
-    const root = document.documentElement;
     const navItems = document.querySelectorAll(".nav-item");
 
     navItems.forEach((element) => {
       element.style.backgroundColor = $themeColor.background;
       element.style.color = $themeColor.text;
     });
-
-    root.style.setProperty("--highlight-color", $themeColor.highlight);
   });
 </script>
 
@@ -39,10 +36,6 @@
 
 <style lang="scss">
   @use "../../styles/colors.scss";
-
-  :root {
-    --highlight-color: #818181;
-  }
 
   nav {
     position: absolute;

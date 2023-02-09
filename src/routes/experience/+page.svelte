@@ -1,6 +1,4 @@
 <script>
-  import { onMount } from "svelte";
-  import { themeColor } from "../../stores/states";
   import Timeline from "../components/Timeline.svelte";
 
   const educationHistory = [
@@ -45,20 +43,9 @@
       ],
     },
   ];
-
-  onMount(() => {
-    const root = document.documentElement;
-    root.style.setProperty("--background-color", $themeColor.background);
-  });
 </script>
 
 <article>
   <Timeline timelineArray={educationHistory} title="Education" />
   <Timeline timelineArray={jobHistory} title="Experience" />
 </article>
-
-<style lang="scss">
-  :root {
-    --background-color: #b3b3b3;
-  }
-</style>

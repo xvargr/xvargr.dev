@@ -1,5 +1,5 @@
 <script>
-  // import { onMount } from "svelte";
+  import { onMount } from "svelte";
   import { pageLoaded, themeColor, isScrolledToTop } from "../stores/states";
   import "../styles/reset.scss";
   import "../styles/global.scss";
@@ -17,6 +17,8 @@
     };
   });
 
+  // todo fix mobile scroll jump scroll
+
   // track scroll position, used for shrinking header on mobile
   function trackScroll(e) {
     if (e.target.scrollTop === 0 && !$isScrolledToTop) {
@@ -25,6 +27,15 @@
       isScrolledToTop.update(() => false);
     }
   }
+
+  // set css variables bodge, these are global, no other way to bridge js to css and svelte store values can't be used in the style section
+  onMount(() => {
+    const root = document.documentElement;
+
+    root.style.setProperty("--background-color", $themeColor.background);
+    root.style.setProperty("--text-color", $themeColor.text);
+    root.style.setProperty("--highlight-color", $themeColor.highlight);
+  });
 </script>
 
 <svelte:head>
@@ -61,6 +72,12 @@
 <style lang="scss">
   @use "../styles/fonts.scss";
   @use "../styles/colors.scss";
+
+  :root {
+    --highlight-color: #818181;
+    --background-color: #b3b3b3;
+    --text-color: colors.$grey;
+  }
 
   .content {
     height: 100vh;

@@ -16,7 +16,6 @@
 
     h2 {
       font-size: 1.5rem;
-      // text-decoration: underline 4px;
     }
   }
 </style>
