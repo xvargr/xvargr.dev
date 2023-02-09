@@ -1,10 +1,6 @@
-<script>
-  import { themeColor } from "../stores/states";
-</script>
-
 <article>
   <div>
-    <h2 style={`color: ${$themeColor.background};`}>Hello there 👋🏻</h2>
+    <h2>Hello there 👋🏻</h2>
     <p>
       I am a self-taught web developer pivoting from an aircraft engineering background. I have an
       affinity for problem solving and enjoy the challenge of finding elegant solutions to complex
@@ -27,7 +23,7 @@
     h2 {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
-      // text-decoration: underline 4px;
+      color: var(--background-color);
     }
 
     p {

@@ -1,19 +1,13 @@
 <script>
-  import { onMount } from "svelte";
   import { themeColor } from "../../stores/states";
   import GithubSvg from "../components/svg/GithubSVG.svelte";
   import LinkedinSvg from "../components/svg/LinkedinSVG.svelte";
   import MailSvg from "../components/svg/MailSVG.svelte";
-
-  onMount(() => {
-    const root = document.documentElement;
-    root.style.setProperty("--highlight-color", $themeColor.highlight);
-  });
 </script>
 
 <article>
   <section>
-    <h2 style={`color: ${$themeColor.background};`}>Contact ✉️</h2>
+    <h2>Contact ✉️</h2>
     <div class="contact-container ">
       <a
         class="link-button linkedin"
@@ -58,7 +52,7 @@
   </section>
 
   <section>
-    <h2 style={`color: ${$themeColor.background};`}>Leave a message</h2>
+    <h2>Leave a message</h2>
     <form action="https://formspree.io/f/mqkopzle" method="POST">
       <div class="form-container">
         <label for="email"> Your email: </label>
@@ -81,10 +75,7 @@
           maxlength="500"
           required
         />
-        <button
-          id="contact-submit-button"
-          type="submit"
-          style={`background-color: ${$themeColor.background}; color: ${$themeColor.text}`}
+        <button id="contact-submit-button" type="submit" style={`color: ${$themeColor.text}`}
           >Send</button
         >
       </div>
@@ -104,6 +95,7 @@
       h2 {
         font-size: 1.5rem;
         margin-bottom: 0.5rem;
+        color: var(--background-color);
       }
 
       .contact-container {
@@ -187,6 +179,7 @@
           }
 
           button {
+            background-color: var(--background-color);
             margin-top: 1rem;
             padding: 0.4rem;
             font-weight: 600;

@@ -1,21 +1,15 @@
 <script>
   import { themeColor } from "../../stores/states";
+  import Project from "../components/Project.svelte";
 
-  // const projects = [{ name: "", description: "", technologies: [""], link: "", retrospective: "" }];
   export let data;
-  console.log(data.github);
 </script>
 
 <article>
-  <h2>{data.github}</h2>
-  <h2 style={`color: ${$themeColor.background};`}>projects</h2>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-  </ul>
+  <h2 style={`color: ${$themeColor.background};`}>Projects</h2>
+  {#each data.repos as repository}
+    <Project {repository} />
+  {/each}
 </article>
 
 <style lang="scss">
