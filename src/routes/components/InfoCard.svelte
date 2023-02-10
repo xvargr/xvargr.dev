@@ -27,7 +27,12 @@
 </script>
 
 <div>
-  <img class="background-image" src={backgroundImage.src.original} alt={backgroundImage.alt} />
+  <img
+    class="background-image"
+    src={backgroundImage.src.original}
+    alt={backgroundImage.alt}
+    class:minimized={!$isScrolledToTop && window.innerWidth <= 768}
+  />
   <div class="info-card" class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
     <div class="image-with-icon">
       <span class="bubble">
@@ -57,9 +62,14 @@
 
   .background-image {
     width: 100vw;
-    height: 100%;
+    height: 30vh;
     max-height: 50vh;
     object-fit: cover;
+    transition: height 250ms;
+  }
+
+  .background-image.minimized {
+    height: 15vh;
   }
 
   .image-attribution {
