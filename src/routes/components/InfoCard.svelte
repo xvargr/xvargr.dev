@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { backgroundImageLoaded, headshotLoaded, isScrolledToTop } from "../../stores/states";
   import RandomEmoji from "./RandomEmoji.svelte";
-  import BubbleSvg from "./svg/bubbleSVG.svelte";
+  import BubbleSvg from "./svg/BubbleSVG.svelte";
 
   export let backgroundImage;
 
@@ -111,8 +111,6 @@
           justify-content: center;
           align-items: center;
           inset: 0;
-          // margin: auto;
-          margin-bottom: 0.3rem;
           font-size: 1.5rem;
         }
       }
