@@ -10,8 +10,6 @@
 
   export let repository;
 
-  console.log(repository);
-
   const { name, description, retrospective, topics, stargazers_count, html_url, homepage } =
     repository;
 </script>

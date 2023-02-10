@@ -21,9 +21,9 @@
 
   // track scroll position, used for shrinking header on mobile
   function trackScroll(e) {
-    if (e.target.scrollTop === 0 && !$isScrolledToTop) {
+    if (e.target.scrollTop <= 50 && !$isScrolledToTop) {
       isScrolledToTop.update(() => true);
-    } else if (e.target.scrollTop > 0 && $isScrolledToTop) {
+    } else if (e.target.scrollTop >= 50 && $isScrolledToTop) {
       isScrolledToTop.update(() => false);
     }
   }
@@ -87,11 +87,12 @@
     flex-direction: column;
 
     header {
-      position: relative;
+      position: absolute;
       height: 30vh;
       max-height: 20rem;
       flex-shrink: 0;
       transition: height 250ms ease;
+      z-index: 10;
     }
 
     .minimized {
@@ -101,8 +102,7 @@
     main {
       position: relative;
       flex-grow: 1;
-      padding: 2rem;
-      padding-bottom: 6rem;
+      padding: 35vh 2rem 6rem 2rem;
       overflow-y: auto;
       overflow-x: hidden;
       background-color: white;
@@ -115,6 +115,7 @@
       flex-direction: row;
 
       header {
+        position: relative;
         height: 100vh;
         max-height: 100vh;
         width: 40vw;
@@ -128,7 +129,6 @@
 
   @media (min-width: 1280px) {
     .content > main {
-      // background-color: gray !important;
       padding: 5rem 8rem;
     }
   }
