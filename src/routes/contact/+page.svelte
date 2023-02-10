@@ -120,7 +120,6 @@
           transition: background-color 100ms;
 
           .icon {
-            display: block;
             width: 2.5rem;
             margin-right: 1rem;
           }
