@@ -47,8 +47,8 @@ function centerLightness(hslArray) {
 
 function getTextTheme(hslArray) {
   const l = hslArray[2];
-  if (l > 0.5) return "#0e0e0e";
-  else return "#dbdbdb";
+  if (l > 0.5) return "#292929";
+  else return "#ebebeb";
 }
 
 function getHighlightTheme(hslArray) {
@@ -74,6 +74,12 @@ export async function load() {
   const fetchRepoData = async () => {
     const repos = await octokit.request("GET /users/{username}/repos", { username: "xvargr" });
     const additions = { 515840292: { retrospective: "msg" }, 490190223: { retrospective: "pin" } };
+    const exclude = [500291917];
+
+    exclude.forEach((id) => {
+      const excludedIndex = repos.data.findIndex((repo) => repo.id === id);
+      repos.data.splice(excludedIndex, 1);
+    });
 
     for (const id in additions) {
       const index = repos.data.findIndex((repo) => repo.id === Number(id));
