@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import IconButton from "./IconButton.svelte";
   import Star from "./svg/Star.svelte";
   import ToolBadge from "./ToolBadge.svelte";
@@ -8,6 +9,17 @@
     repository;
 
   let expanded = false;
+
+  onMount(() => {
+    const root = document.documentElement;
+    const paragraph = document.querySelector(".full-paragraph");
+
+    // set dynamic height for expandable content, else (with height: fit-content) animated transition will not work
+    root.style.setProperty(
+      "--retrospective-height",
+      `${paragraph.getBoundingClientRect().height}px`,
+    );
+  });
 </script>
 
 <div class="project-container">
@@ -26,8 +38,8 @@
   {#if retrospective}
     <div class="retrospective-container">
       <h4>Retrospective</h4>
-      <div class="retrospective-contents" class:expanded>
-        <p>
+      <div class="contents" class:expanded>
+        <p class="full-paragraph">
           {retrospective} Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam architecto totam
           minus quos voluptatum, omnis voluptate a maiores quisquam, ratione beatae amet laboriosam id
           consectetur accusantium, molestiae illo nemo suscipit! Ab rerum pariatur laborum repellat aperiam
@@ -41,7 +53,7 @@
         </p>
         <div class="fade" class:expanded />
       </div>
-      <button class="retrospective-expander" on:click={() => (expanded = !expanded)}
+      <button class="expander" on:click={() => (expanded = !expanded)}
         >{expanded ? "less" : "more"}</button
       >
     </div>
@@ -115,10 +127,9 @@
         color: var(--background-color);
       }
 
-      .retrospective-contents {
+      .contents {
         position: relative;
-        // height: 5rem;
-        max-height: 5rem;
+        height: 5rem;
         overflow: hidden;
         transition: all 500ms ease-in;
 
@@ -134,15 +145,13 @@
         }
         .fade.expanded {
           opacity: 0;
-          // display: none;
         }
       }
-      .retrospective-contents.expanded {
-        // height: 10rem;
-        max-height: 30rem;
+      .contents.expanded {
+        height: var(--retrospective-height);
       }
 
-      .retrospective-expander {
+      .expander {
         color: colors.$grey;
         position: absolute;
         cursor: pointer;
