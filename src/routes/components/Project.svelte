@@ -28,16 +28,7 @@
       <h4>Retrospective</h4>
       <div class={`content content-${id}`} class:expanded>
         <p class={`paragraph full-paragraph-${id}`}>
-          {retrospective} Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam architecto totam
-          minus quos voluptatum, omnis voluptate a maiores quisquam, ratione beatae amet laboriosam id
-          consectetur accusantium, molestiae illo nemo suscipit! Ab rerum pariatur laborum repellat aperiam
-          suscipit, distinctio sit, itaque accusamus voluptas quaerat aspernatur fugit dicta sunt nisi
-          unde qui quia voluptatum accusantium totam eos impedit autem quidem magnam? Commodi? Magni
-          consequatur deserunt repellendus, cum eum iusto mollitia quam adipisci officia modi quisquam
-          itaque corporis placeat molestiae provident, nisi quae. Odio dolorum, qui inventore fuga ipsum
-          ex porro veniam possimus? Quae ipsum ullam quidem est dolores doloribus blanditiis non asperiores
-          molestias saepe fugiat officiis debitis deserunt voluptatum culpa sint, ad modi illo commodi
-          placeat nesciunt, soluta fugit! Maiores, rerum ab.
+          {@html retrospective}
         </p>
         <div class="fade" class:expanded />
       </div>
@@ -80,7 +71,7 @@
 
   .project-container {
     padding: 0 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     border-radius: 1rem;
     border: 2px solid var(--background-color);
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -120,7 +111,7 @@
 
     .retrospective-container {
       margin-top: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1rem;
 
       h4 {
         color: var(--background-color);
@@ -128,7 +119,7 @@
 
       .content {
         position: relative;
-        height: 5rem;
+        height: 4rem;
         overflow: hidden;
         transition: all 500ms ease-in;
 
@@ -146,13 +137,11 @@
           opacity: 0;
         }
       }
-      // .contents.expanded {
-      //   height: var(--retrospective-height);
-      // }
 
       .expander {
         color: colors.$grey;
-        position: absolute;
+        // position: absolute;
+        width: 100%;
         cursor: pointer;
         border: none;
         background-color: transparent;

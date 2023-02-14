@@ -2,14 +2,11 @@
   <div>
     <h2>Hello there 👋🏻</h2>
     <p>
-      I am a self-taught web developer pivoting from an aircraft engineering background. I have an
-      affinity for problem solving and enjoy the challenge of finding elegant solutions to complex
-      problems, while learning new skills and tools along the way.
-    </p>
-
-    <p>
-      My other interests are 3D modeling & 3D printing, PC building, gaming, cooking, and mechanical
-      watches
+      I am a self-taught web developer pivoting from an aircraft engineering background. I have been
+      creating full stack, responsive web applications for over a year, with a solid understanding
+      of the fundamentals, specializing in the <b>MERN</b> stack, although I do dabble in less common
+      and newer technologies such as Svelte and Next.js. I am a quick learner and have an affinity for
+      problem solving and enjoy the challenges that comes with it.
     </p>
   </div>
 </article>

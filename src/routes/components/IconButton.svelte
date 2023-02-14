@@ -1,13 +1,14 @@
 <script>
+  import DownloadSvg from "./svg/DownloadSVG.svelte";
   import GithubSvg from "./svg/GithubSVG.svelte";
 
   export let backgroundColor = null;
   export let textColor = null;
   export let icon = null;
-  export let goto;
+  export let download = null;
   export let newTab = false;
-
-  // export let
+  export let big = false;
+  export let goto;
 </script>
 
 <a
@@ -15,13 +16,17 @@
   target={newTab ? "_blank" : "_self"}
   rel="noreferrer"
   style={`backgroundColor:${backgroundColor}; color:${textColor}`}
+  class:big
+  {download}
 >
-  {#if icon === "github"}
-    <span class="icon">
-      <GithubSvg />
+  {#if icon}
+    <span class="icon" style={`margin-right:${$$slots.default ? "" : "0"};`}>
+      {#if icon === "github"}
+        <GithubSvg />
+      {:else if icon === "download"}
+        <DownloadSvg />
+      {/if}
     </span>
-  {:else if icon === ""}
-    <!-- else if content here -->
   {/if}
   <slot />
 </a>
@@ -40,7 +45,6 @@
     text-decoration: none;
     border: none;
     border-radius: 0.5rem;
-    // cursor: pointer;
     transition: background-color 100ms;
 
     .icon {
@@ -51,5 +55,15 @@
 
   a:hover {
     background-color: var(--highlight-color);
+  }
+
+  .big {
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    .icon {
+      width: 2rem;
+      margin-right: 1rem;
+    }
   }
 </style>
