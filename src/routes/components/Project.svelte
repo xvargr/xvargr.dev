@@ -1,25 +1,13 @@
 <script>
-  import { onMount } from "svelte";
   import IconButton from "./IconButton.svelte";
   import Star from "./svg/Star.svelte";
   import ToolBadge from "./ToolBadge.svelte";
 
   export let repository;
-  const { name, description, retrospective, topics, stargazers_count, html_url, homepage } =
+  const { name, id, description, retrospective, topics, stargazers_count, html_url, homepage } =
     repository;
 
   let expanded = false;
-
-  onMount(() => {
-    const root = document.documentElement;
-    const paragraph = document.querySelector(".full-paragraph");
-
-    // set dynamic height for expandable content, else (with height: fit-content) animated transition will not work
-    root.style.setProperty(
-      "--retrospective-height",
-      `${paragraph.getBoundingClientRect().height}px`,
-    );
-  });
 </script>
 
 <div class="project-container">
@@ -38,8 +26,8 @@
   {#if retrospective}
     <div class="retrospective-container">
       <h4>Retrospective</h4>
-      <div class="contents" class:expanded>
-        <p class="full-paragraph">
+      <div class={`content content-${id}`} class:expanded>
+        <p class={`paragraph full-paragraph-${id}`}>
           {retrospective} Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam architecto totam
           minus quos voluptatum, omnis voluptate a maiores quisquam, ratione beatae amet laboriosam id
           consectetur accusantium, molestiae illo nemo suscipit! Ab rerum pariatur laborum repellat aperiam
@@ -53,8 +41,19 @@
         </p>
         <div class="fade" class:expanded />
       </div>
-      <button class="expander" on:click={() => (expanded = !expanded)}
-        >{expanded ? "less" : "more"}</button
+      <button
+        class="expander"
+        on:click={() => {
+          // set dynamic height for expandable content, else (with height: fit-content) animated transition will not work
+          // device resizing agnostic, no cross pollution of styles with dynamic class names
+          const trueHeight = document
+            .querySelector(`.full-paragraph-${id}`)
+            .getBoundingClientRect().height;
+
+          document.querySelector(`.content-${id}`).style.height = expanded ? "" : `${trueHeight}px`;
+
+          expanded = !expanded;
+        }}>{expanded ? "less" : "more"}</button
       >
     </div>
   {/if}
@@ -127,7 +126,7 @@
         color: var(--background-color);
       }
 
-      .contents {
+      .content {
         position: relative;
         height: 5rem;
         overflow: hidden;
@@ -147,9 +146,9 @@
           opacity: 0;
         }
       }
-      .contents.expanded {
-        height: var(--retrospective-height);
-      }
+      // .contents.expanded {
+      //   height: var(--retrospective-height);
+      // }
 
       .expander {
         color: colors.$grey;
