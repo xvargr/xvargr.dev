@@ -2,6 +2,8 @@ import { PEXELS_KEY, GITHUB_KEY } from "$env/static/private";
 import { createClient } from "pexels";
 import { Octokit } from "octokit";
 
+import { excludedRepos, repoRetrospective } from "./userData";
+
 const octokit = new Octokit({ auth: GITHUB_KEY, userAgent: "xvargr.dev" });
 
 function hex2hsl(hexString) {
@@ -73,21 +75,13 @@ export async function load() {
 
   const fetchRepoData = async () => {
     const repos = await octokit.request("GET /users/{username}/repos", { username: "xvargr" });
-    const additions = {
-      515840292: {
-        retrospective:
-          "msg lorem*4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam architecto totam minus quos voluptatum, omnis voluptate a maiores quisquam, ratione beatae amet laboriosam id consectetur accusantium, molestiae illo nemo suscipit! Ab rerum pariatur laborum repellat aperiam suscipit, distinctio sit, itaque accusamus voluptas quaerat aspernatur fugit dicta sunt nisi unde qui quia voluptatum accusantium totam eos impedit autem quidem magnam? Commodi? Magni consequatur deserunt repellendus, cum eum iusto mollitia quam adipisci officia modi quisquam itaque corporis placeat molestiae provident, nisi quae. Odio dolorum, qui inventore fuga ipsum ex porro veniam possimus? Quae ipsum ullam quidem est dolores doloribus blanditiis non asperiores molestias saepe fugiat officiis debitis deserunt voluptatum culpa sint, ad modi illo commodi placeat nesciunt, soluta fugit! Maiores, rerum ab.*4",
-      },
-      490190223: { retrospective: "pin" },
-    };
-    const exclude = [500291917];
 
-    exclude.forEach((id) => {
+    excludedRepos.forEach((id) => {
       const excludedIndex = repos.data.findIndex((repo) => repo.id === id);
       repos.data.splice(excludedIndex, 1);
     });
 
-    for (const id in additions) {
+    for (const id in repoRetrospective) {
       const index = repos.data.findIndex((repo) => repo.id === Number(id));
 
       if (index === -1) {
@@ -95,8 +89,8 @@ export async function load() {
         return null;
       }
 
-      Object.keys(additions[id]).forEach((key) => {
-        repos.data[index][key] = additions[id][key];
+      Object.keys(repoRetrospective[id]).forEach((key) => {
+        repos.data[index][key] = repoRetrospective[id][key];
       });
     }
 

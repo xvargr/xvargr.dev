@@ -20,7 +20,7 @@
 
     h2 {
       font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
   }
 </style>
