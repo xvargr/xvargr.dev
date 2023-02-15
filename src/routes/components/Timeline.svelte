@@ -8,9 +8,13 @@
   {#each timelineArray as node, index}
     <div class="connector" class:fade-top={index === 0} />
     <div class="node">
-      <div>{node.duration}</div>
-      <h3>{node.institution}</h3>
+      <div class="header">
+        <h3>{node.institution}</h3>
+        <span class="duration">{node.duration}</span>
+      </div>
       <h4>{node.title}</h4>
+
+      <hr />
       <ul>
         {#each node.description as description}
           <li>{description}</li>
@@ -30,14 +34,29 @@
     color: var(--background-color);
   }
 
+  hr {
+    border: 1px dashed var(--highlight-color);
+    margin: 1rem 0;
+  }
+
   section {
     margin-bottom: 4rem;
+    color: colors.$grey;
 
     .node {
       padding: 1rem;
       border-radius: 1rem;
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
       border: 2px solid var(--background-color);
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+
+        .duration {
+          flex-shrink: 0;
+        }
+      }
     }
 
     .connector {

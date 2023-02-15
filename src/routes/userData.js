@@ -1,8 +1,13 @@
+export const introduction = `I am a self-taught web developer pivoting from an aircraft engineering background. I have been
+      creating full stack, responsive web applications for over a year, with a solid understanding
+      of the fundamentals, specializing in the <b>MERN</b> stack, although I do experiment with less common
+      and newer technologies such as Svelte and Next.js. I am a quick learner and have an affinity for
+      problem solving and enjoy the challenges that comes with it.`;
+
 export const educationHistory = [
   {
     institution: "Universiti Kuala Lumpur",
-    title:
-      "Bachelor of Technology - BTech, Aircraft Engineering Technology (Honours) in Mechanical",
+    title: "Bachelor of Technology - Aircraft Engineering Technology (Honours) in Mechanical",
     duration: "2017-2021",
     description: [
       "Final term research on propeller noise reduction, data collection with custom designed testbed and arduino microcontroller, realtime data streamed time over serial connection and recorded to an excel sheet",
@@ -60,3 +65,17 @@ export const repoRetrospective = {
         such as refactoring and modularizing code to keep the codebase clean, simple, and maintainable.`,
   },
 };
+
+export const additionalSkills = [
+  "javascript",
+  "html",
+  "css",
+  "sass",
+  "git",
+  "react",
+  "node",
+  "mongodb",
+  "express",
+  "tailwindcss",
+  "svelte",
+];
