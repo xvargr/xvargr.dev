@@ -86,39 +86,39 @@
   }
 
   .node {
-    @include badge-theme($color: #5aaa46);
+    @include badge-theme($color: colors.$node);
   }
 
   .passport {
-    @include badge-theme($color: #35df79);
+    @include badge-theme($color: colors.$passport);
   }
 
   .mongodb {
-    @include badge-theme($color: #00684a);
+    @include badge-theme($color: colors.$mongodb);
   }
 
   .express {
-    @include badge-theme($color: #353535);
+    @include badge-theme($color: colors.$express);
   }
 
   .axios {
-    @include badge-theme($color: #671ddf);
+    @include badge-theme($color: colors.$axios);
   }
 
   .react {
-    @include badge-theme($color: #61dafb);
+    @include badge-theme($color: colors.$react);
   }
 
   .tailwindcss {
-    @include badge-theme($color: #0ea5e9);
+    @include badge-theme($color: colors.$tailwindcss);
   }
 
   .svelte {
-    @include badge-theme($color: #ff3e00);
+    @include badge-theme($color: colors.$svelte);
   }
 
   .sass {
-    @include badge-theme($color: #cc6699);
+    @include badge-theme($color: colors.$sass);
   }
 
   .socket-io {

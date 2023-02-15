@@ -50,7 +50,7 @@
   {/if}
 
   <div class="buttons-section">
-    <IconButton icon="github" goto={html_url} newTab>github</IconButton>
+    <IconButton icon="github" goto={html_url} newTab>GitHub</IconButton>
     {#if homepage}
       <IconButton goto={homepage} newTab>visit</IconButton>
     {/if}

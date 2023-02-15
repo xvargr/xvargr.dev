@@ -3,6 +3,7 @@
   import GithubSvg from "../components/svg/GithubSVG.svelte";
   import LinkedinSvg from "../components/svg/LinkedinSVG.svelte";
   import MailSvg from "../components/svg/MailSVG.svelte";
+  import IconButton from "../components/IconButton.svelte";
 </script>
 
 <article>
@@ -48,6 +49,15 @@
         </span>
         <span>email</span>
       </button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Resume</h2>
+    <div class="download-button">
+      <IconButton goto="/test.html" download="Akmal-Shareef-Resume" icon="download" big
+        >Download resume</IconButton
+      >
     </div>
   </section>
 
@@ -153,6 +163,11 @@
         }
       }
 
+      .download-button {
+        max-width: 20rem;
+        margin: auto;
+      }
+
       form {
         display: flex;
         width: 100%;
@@ -190,7 +205,7 @@
           }
 
           button:hover {
-            background-color: var(--highlight-color) !important; // js assign highlight bodge
+            background-color: var(--highlight-color); // js assign highlight bodge
           }
         }
       }
