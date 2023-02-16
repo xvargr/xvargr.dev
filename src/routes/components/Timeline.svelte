@@ -9,12 +9,13 @@
     <div class="connector" class:fade-top={index === 0} />
     <div class="node">
       <div class="header">
-        <h3>{node.institution}</h3>
         <span class="duration">{node.duration}</span>
+        <h3>{node.institution}</h3>
       </div>
       <h4>{node.title}</h4>
 
       <hr />
+
       <ul>
         {#each node.description as description}
           <li>{description}</li>
@@ -50,9 +51,6 @@
       border: 2px solid var(--background-color);
 
       .header {
-        display: flex;
-        justify-content: space-between;
-
         .duration {
           flex-shrink: 0;
         }
@@ -74,6 +72,14 @@
     .fade-bottom {
       height: 3rem;
       background: linear-gradient(var(--background-color), #ffffff);
+    }
+  }
+
+  @media (min-width: 640px) {
+    .header {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
     }
   }
 </style>

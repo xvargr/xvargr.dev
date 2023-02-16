@@ -20,7 +20,7 @@ export const jobHistory = [
   {
     institution: "Freelance",
     title: "Web developer",
-    duration: "2022-current",
+    duration: "January 2022 - present",
     description: [
       "Designing, developing, and maintaining all aspects of a web application, including the server-side and client-side components",
       "Designing frontend UI with modern frameworks such as React and Svelte",
@@ -30,7 +30,7 @@ export const jobHistory = [
   {
     institution: "Asia AeroTechnic (AAT)",
     title: "Internship",
-    duration: "2021-2021",
+    duration: "January 2021 - July 2021",
     description: [
       "Provided base maintenance assistance and routine maintenance tasks for commercial aircraft such as the A320, B737, ATR42/72",
       "Assisted in various troubleshoots of mechanical and avionic systems",
@@ -42,7 +42,7 @@ export const jobHistory = [
   {
     institution: "Freelance",
     title: "Fabricator and PC repair",
-    duration: "2019-2021",
+    duration: "August 2018 - December 2020",
     description: [
       "Delivered 3D printing and 3D modeling service for students on campus",
       "Provided computer repair and upgrade to customers",
@@ -79,3 +79,5 @@ export const additionalSkills = [
   "tailwindcss",
   "svelte",
 ];
+
+export const doNotWake = [588034462];
