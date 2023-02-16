@@ -21,3 +21,6 @@ export const themeColor = writable({
 
 // scroll position
 export const isScrolledToTop = writable(true);
+
+// project server status
+export const serverStatus = writable({});
