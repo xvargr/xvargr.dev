@@ -1,4 +1,7 @@
 <script>
+  import { page } from "$app/stores";
+  import { serverStatus } from "../../stores/states";
+  import { doNotWake } from "../userData";
   import IconButton from "./IconButton.svelte";
   import Star from "./svg/Star.svelte";
   import ToolBadge from "./ToolBadge.svelte";
@@ -51,8 +54,13 @@
 
   <div class="buttons-section">
     <IconButton icon="github" goto={html_url} newTab>GitHub</IconButton>
-    {#if homepage}
-      <IconButton goto={homepage} newTab>visit</IconButton>
+    {#if homepage && homepage !== $page.url.origin}
+      <IconButton
+        goto={homepage}
+        newTab
+        showInfo={!doNotWake.includes(id) ? $serverStatus[id] || "sleeping" : false}
+        >visit</IconButton
+      >
     {/if}
   </div>
 
@@ -158,6 +166,7 @@
     .buttons-section {
       width: 100%;
       display: flex;
+      gap: 0.3rem;
       justify-content: end;
       margin-bottom: 0;
     }
