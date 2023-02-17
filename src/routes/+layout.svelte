@@ -1,10 +1,13 @@
 <script>
   import { onMount } from "svelte";
-  import { pageLoaded, themeColor, isScrolledToTop } from "../stores/states";
+  import { pageLoaded, themeColor, isScrolledToTop, serverStatus } from "../stores/states";
+  import { doNotWake } from "./userData";
+  import { wake } from "./utils";
   import "../styles/reset.scss";
   import "../styles/global.scss";
   import InfoCard from "./components/InfoCard.svelte";
   import NavBubbles from "./components/NavBubbles.svelte";
+  import LoadingModal from "./components/LoadingModal.svelte";
 
   export let data;
   const { backgroundImage, theme } = data;
@@ -17,8 +20,6 @@
     };
   });
 
-  // todo fix mobile scroll jump scroll
-
   // track scroll position, used for shrinking header on mobile
   function trackScroll(e) {
     if (e.target.scrollTop <= 50 && !$isScrolledToTop) {
@@ -28,13 +29,43 @@
     }
   }
 
-  // set css variables bodge, these are global, no other way to bridge js to css and svelte store values can't be used in the style section
   onMount(() => {
-    const root = document.documentElement;
+    // set css variables bodge, these are global, no other way to bridge js to css and svelte store values can't be used in the style section
+    function setCssProperties() {
+      const root = document.documentElement;
 
-    root.style.setProperty("--background-color", $themeColor.background);
-    root.style.setProperty("--text-color", $themeColor.text);
-    root.style.setProperty("--highlight-color", $themeColor.highlight);
+      root.style.setProperty("--background-color", $themeColor.background);
+      root.style.setProperty("--text-color", $themeColor.text);
+      root.style.setProperty("--highlight-color", $themeColor.highlight);
+    }
+
+    // wake up sleeping services
+    function wakeUpServices() {
+      data.repos.forEach((repo) => {
+        if (repo.homepage && !doNotWake.includes(repo.id)) {
+          serverStatus.update((status) => {
+            return { ...status, [repo.id]: "waking up" };
+          });
+
+          wake(`${repo.homepage}/health`)
+            .then(() => {
+              serverStatus.update((status) => {
+                return { ...status, [repo.id]: "awake" };
+              });
+              // console.log("success", res);
+            })
+            .catch(() => {
+              serverStatus.update((status) => {
+                return { ...status, [repo.id]: "sleeping" };
+              });
+              // console.log("failed", err);
+            });
+        }
+      });
+    }
+
+    setCssProperties();
+    // wakeUpServices();
   });
 </script>
 
@@ -56,8 +87,7 @@
 </svelte:head>
 
 {#if !$pageLoaded}
-  <!-- todo: full loading modal -->
-  <div style="background-color: yellow;">loading...</div>
+  <LoadingModal />
 {/if}
 <div class="content">
   <header class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
