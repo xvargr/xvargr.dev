@@ -2,7 +2,7 @@
   import { fade } from "svelte/transition";
 </script>
 
-<div class="loading-modal" transition:fade>
+<div class="loading-overlay" transition:fade>
   <div class="center" />
   <div class="spinner primary" />
   <div class="spinner secondary" />
@@ -12,7 +12,7 @@
 <style lang="scss">
   $spinner-size: 4rem;
 
-  .loading-modal {
+  .loading-overlay {
     display: flex;
     position: fixed;
     top: 0;
@@ -23,6 +23,7 @@
     height: 100vh;
     width: 100vw;
     background-color: var(--background-color);
+    transition: background-color 500ms ease-in;
   }
 
   .center {
@@ -33,6 +34,7 @@
     margin: auto;
     background-color: var(--text-color);
     rotate: 45deg;
+    transition: background-color 500ms ease-in;
   }
 
   @mixin spinner($position) {
@@ -45,6 +47,7 @@
     position: absolute;
     inset: 0;
     margin: auto;
+    transition: border-color 500ms ease-in;
   }
 
   .primary {

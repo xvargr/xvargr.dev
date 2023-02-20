@@ -3,23 +3,28 @@
   import { pageLoaded, themeColor, isScrolledToTop, serverStatus } from "../stores/states";
   import { userSettings } from "./userData";
   import { wake } from "./utils";
+
   import "../styles/reset.scss";
   import "../styles/global.scss";
+
   import InfoCard from "./components/InfoCard.svelte";
   import NavBubbles from "./components/NavBubbles.svelte";
-  import LoadingModal from "./components/LoadingModal.svelte";
+  import LoadingOverlay from "./components/LoadingOverlay.svelte";
 
   export let data;
   const { backgroundImage, theme } = data;
 
   // initialize color state
-  themeColor.update(() => {
-    return {
-      background: theme.background || "#c29588",
-      text: theme.text || "#292929",
-      highlight: theme.highlight || "#f5b9a8",
-    };
-  });
+  function initializeColor() {
+    themeColor.update(() => {
+      return {
+        background: theme.background || "#c29588",
+        text: theme.text || "#292929",
+        highlight: theme.highlight || "#f5b9a8",
+      };
+    });
+  }
+  initializeColor();
 
   // track scroll position, used for shrinking header on mobile
   function trackScroll(e) {
@@ -32,7 +37,7 @@
 
   onMount(() => {
     // set css variables bodge, these are global, no other way to bridge js to css and svelte store values can't be used in the style section
-    function setCssProperties() {
+    function setCssVariables() {
       const root = document.documentElement;
 
       root.style.setProperty("--background-color", $themeColor.background);
@@ -65,9 +70,10 @@
       });
     }
 
-    setCssProperties();
-    // wakeUpServices(); // disabled in dev
-    console.warn("not waking services");
+    setCssVariables();
+
+    if (userSettings.wakeServices) wakeUpServices();
+    else console.warn("not waking services");
   });
 </script>
 
@@ -89,7 +95,7 @@
 </svelte:head>
 
 {#if !$pageLoaded}
-  <LoadingModal />
+  <LoadingOverlay />
 {/if}
 <div class="content" class:loading={!$pageLoaded}>
   <header class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}>
