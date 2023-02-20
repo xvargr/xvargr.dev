@@ -12,16 +12,14 @@ import {
 } from "./utils";
 import { userInfo, userSettings } from "./userData";
 
-const octokit = new Octokit({ auth: GITHUB_KEY, userAgent: "xvargr.dev" });
+const octokit = new Octokit({ auth: GITHUB_KEY, userAgent: userSettings.github.userAgent });
 
 export async function load() {
   async function fetchBackground() {
     const client = createClient(PEXELS_KEY);
 
     const result = await client.photos.search({
-      query: "mountain",
-      size: "medium",
-      orientation: "portrait",
+      ...userSettings.imageQuery,
       page: Math.floor(Math.random() * 200),
       per_page: 1,
     });
@@ -29,7 +27,9 @@ export async function load() {
   }
 
   const fetchRepoData = async () => {
-    const repos = await octokit.request("GET /users/{username}/repos", { username: "xvargr" });
+    const repos = await octokit.request("GET /users/{username}/repos", {
+      username: userSettings.github.username,
+    });
 
     userSettings.excludedRepos.forEach((id) => {
       const excludedIndex = repos.data.findIndex((repo) => repo.id === id);

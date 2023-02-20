@@ -13,16 +13,24 @@
   @use "../styles/colors.scss";
 
   article {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    // justify-content: center;
+    // align-items: center;
     color: colors.$grey;
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--background-color);
-    }
+    div {
+      margin: auto;
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--background-color);
+      }
 
-    p {
-      margin-bottom: 0.5rem;
+      p {
+        margin-bottom: 0.5rem;
+      }
     }
   }
 

@@ -1,3 +1,7 @@
+///
+// client utilities
+///
+
 export async function wake(url, retries = 0) {
   return new Promise((resolve, reject) => {
     window
@@ -22,6 +26,10 @@ export async function wake(url, retries = 0) {
       });
   });
 }
+
+///
+// server utilities
+///
 
 export function hex2hsl(hexString) {
   // https://stackoverflow.com/a/54071699/18863465

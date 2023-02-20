@@ -40,6 +40,15 @@
     margin: 1rem 0;
   }
 
+  ul {
+    li {
+      margin-bottom: 0.5rem;
+    }
+    li:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
   section {
     margin-bottom: 4rem;
     color: colors.$grey;

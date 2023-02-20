@@ -84,4 +84,12 @@ export const userInfo = {
   emojis: ["🐺", "🦕", "🐍", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗", "🇲🇾"],
 };
 
-export const userSettings = { sort: true, excludedRepos: [500291917], doNotWake: [588034462] };
+export const userSettings = {
+  github: { username: "xvargr", userAgent: "xvargr.dev" },
+  excludedRepos: [500291917],
+  sort: true,
+  wakeServices: false,
+  keepServicesAwake: false,
+  doNotWake: [588034462],
+  imageQuery: { query: "mountain", size: "medium", orientation: "portrait" },
+};
