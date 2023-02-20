@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { serverStatus } from "../../stores/states";
-  import { doNotWake } from "../userData";
+  import { userSettings } from "../userData";
   import IconButton from "./IconButton.svelte";
   import Star from "./svg/Star.svelte";
   import ToolBadge from "./ToolBadge.svelte";
@@ -58,7 +58,7 @@
       <IconButton
         goto={homepage}
         newTab
-        showInfo={!doNotWake.includes(id) ? $serverStatus[id] || "sleeping" : false}
+        showInfo={!userSettings.doNotWake.includes(id) ? $serverStatus[id] || "sleeping" : false}
         >visit</IconButton
       >
     {/if}

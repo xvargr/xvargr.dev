@@ -1,9 +1,9 @@
 <script>
-  import { additionalSkills } from "../userData";
+  import { userInfo } from "../userData";
 
   export let data;
 
-  const skillsArray = [...additionalSkills];
+  const skillsArray = [...userInfo.additionalSkills];
   data.repos.forEach((repo) => {
     repo.topics?.forEach((topic) => {
       if (!skillsArray.includes(topic)) skillsArray.push(topic);

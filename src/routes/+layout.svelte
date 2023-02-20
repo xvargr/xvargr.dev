@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { pageLoaded, themeColor, isScrolledToTop, serverStatus } from "../stores/states";
-  import { doNotWake } from "./userData";
+  import { userSettings } from "./userData";
   import { wake } from "./utils";
   import "../styles/reset.scss";
   import "../styles/global.scss";
@@ -43,7 +43,7 @@
     // wake up sleeping services, for free tiers of heroku/render
     function wakeUpServices() {
       data.repos.forEach((repo) => {
-        if (repo.homepage && !doNotWake.includes(repo.id)) {
+        if (repo.homepage && !userSettings.doNotWake.includes(repo.id)) {
           serverStatus.update((status) => {
             return { ...status, [repo.id]: "waking up" };
           });
@@ -67,6 +67,7 @@
 
     setCssProperties();
     // wakeUpServices(); // disabled in dev
+    console.warn("not waking services");
   });
 </script>
 
@@ -91,7 +92,7 @@
   <LoadingModal />
 {/if}
 <div class="content" class:loading={!$pageLoaded}>
-  <header class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
+  <header class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}>
     <InfoCard {backgroundImage} />
     <NavBubbles />
   </header>
@@ -125,8 +126,7 @@
       transition: height 250ms ease;
       z-index: 10;
     }
-
-    .minimized {
+    header.minimized {
       height: 15vh;
     }
 
@@ -140,12 +140,29 @@
       color: #242424;
     }
   }
+
   .content.loading {
     opacity: 0;
   }
 
+  @media (min-height: 1060px) {
+    .content {
+      main {
+        padding-top: 25rem;
+      }
+    }
+  }
+
   @media (min-width: 768px) {
-    // @media (min-width: 1024px) {
+    .content {
+      main {
+        padding-left: 6rem;
+        padding-right: 6rem;
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
     .content {
       flex-direction: row;
 
@@ -157,14 +174,9 @@
       }
 
       main {
-        padding: 3rem;
+        // padding: 3rem;
+        padding: 5rem 8rem;
       }
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .content > main {
-      padding: 5rem 8rem;
     }
   }
 </style>

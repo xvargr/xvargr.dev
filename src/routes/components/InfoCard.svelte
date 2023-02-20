@@ -31,9 +31,9 @@
     class="background-image"
     src={backgroundImage.src.original}
     alt={backgroundImage.alt}
-    class:minimized={!$isScrolledToTop && window.innerWidth <= 768}
+    class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}
   />
-  <div class="info-card" class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
+  <div class="info-card" class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}>
     <div class="image-with-icon">
       <span class="bubble">
         <span class="emoji">
@@ -50,7 +50,7 @@
   </div>
   <a
     class="image-attribution"
-    class:hidden={!$isScrolledToTop && window.innerWidth <= 768}
+    class:hidden={!$isScrolledToTop && window.innerWidth <= 1280}
     href={backgroundImage.photographer_url}
     >photo by {backgroundImage.photographer}
   </a>
@@ -63,7 +63,7 @@
   .background-image {
     width: 100vw;
     height: 30vh;
-    max-height: 50vh;
+    max-height: 20rem;
     object-fit: cover;
     transition: height 250ms;
   }
@@ -148,7 +148,7 @@
 
   .info-card.minimized {
     width: 90%;
-    max-width: 100%;
+    max-width: 50rem;
     height: 80%;
 
     .image-with-icon {
@@ -160,7 +160,7 @@
     display: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1280px) {
     .background-image {
       width: 100vw;
       height: 100vh;
@@ -177,7 +177,8 @@
       height: fit-content;
       width: fit-content;
       min-width: auto;
-      padding: 3rem;
+      padding: 4rem;
+      margin: auto;
 
       flex-direction: column;
       justify-content: space-around;
@@ -198,17 +199,6 @@
       .information {
         font-size: larger;
         margin-left: 0;
-        margin-top: 3rem;
-      }
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .info-card {
-      padding: 4rem;
-      margin: auto;
-
-      .information {
         margin-top: 4rem;
       }
     }
