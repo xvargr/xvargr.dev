@@ -12,6 +12,7 @@
   export let data;
   const { backgroundImage, theme } = data;
 
+  // initialize color state
   themeColor.update(() => {
     return {
       background: theme.background || "#c29588",
@@ -39,7 +40,7 @@
       root.style.setProperty("--highlight-color", $themeColor.highlight);
     }
 
-    // wake up sleeping services
+    // wake up sleeping services, for free tiers of heroku/render
     function wakeUpServices() {
       data.repos.forEach((repo) => {
         if (repo.homepage && !doNotWake.includes(repo.id)) {
@@ -65,7 +66,7 @@
     }
 
     setCssProperties();
-    // wakeUpServices();
+    // wakeUpServices(); // disabled in dev
   });
 </script>
 
@@ -89,7 +90,7 @@
 {#if !$pageLoaded}
   <LoadingModal />
 {/if}
-<div class="content">
+<div class="content" class:loading={!$pageLoaded}>
   <header class:minimized={!$isScrolledToTop && window.innerWidth <= 768}>
     <InfoCard {backgroundImage} />
     <NavBubbles />
@@ -139,8 +140,12 @@
       color: #242424;
     }
   }
+  .content.loading {
+    opacity: 0;
+  }
 
   @media (min-width: 768px) {
+    // @media (min-width: 1024px) {
     .content {
       flex-direction: row;
 
