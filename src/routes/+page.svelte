@@ -1,11 +1,11 @@
 <script>
-  import { introduction } from "./userData";
+  import { userInfo } from "./userData";
 </script>
 
 <article>
   <div>
     <h2>Hello there 👋🏻</h2>
-    <p>{@html introduction}</p>
+    <p>{@html userInfo.introduction}</p>
   </div>
 </article>
 
@@ -34,7 +34,7 @@
       align-items: center;
       justify-content: center;
 
-      padding: 4rem;
+      padding: 2rem;
 
       > div {
         max-width: 40rem;

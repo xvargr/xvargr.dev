@@ -94,7 +94,7 @@
     }
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     nav {
       justify-content: end;
       padding-right: 0.8rem;
@@ -109,7 +109,7 @@
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1280px) {
     nav {
       width: 8.75rem;
       height: fit-content;

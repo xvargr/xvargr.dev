@@ -1,9 +1,9 @@
 <script>
-  const emojis = ["🐺", "🦕", "🐍", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗", "🇲🇾"];
+  import { userInfo } from "../userData";
 
   function getRandomEmoji() {
-    const length = emojis.length;
-    return emojis[Math.floor(Math.random() * length)];
+    const length = userInfo.emojis.length;
+    return userInfo.emojis[Math.floor(Math.random() * length)];
   }
 </script>
 
