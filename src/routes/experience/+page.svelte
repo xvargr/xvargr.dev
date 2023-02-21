@@ -4,10 +4,12 @@
   import { userInfo } from "../userData";
 
   export let data;
+
+  const { educationHistory, jobHistory } = userInfo;
 </script>
 
 <article>
   <SkillTiles {data} />
-  <Timeline timelineArray={userInfo.educationHistory} title="Education" />
-  <Timeline timelineArray={userInfo.jobHistory} title="Experience" />
+  <Timeline timelineArray={educationHistory} title="Education" />
+  <Timeline timelineArray={jobHistory} title="Experience" />
 </article>

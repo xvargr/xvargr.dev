@@ -12,14 +12,17 @@ import {
 } from "./utils";
 import { userInfo, userSettings } from "./userData";
 
-const octokit = new Octokit({ auth: GITHUB_KEY, userAgent: userSettings.github.userAgent });
+const { github, imageQuery } = userSettings;
+const { repoRetrospective } = userInfo;
+
+const octokit = new Octokit({ auth: GITHUB_KEY, userAgent: github.userAgent });
 
 export async function load() {
   async function fetchBackground() {
     const client = createClient(PEXELS_KEY);
 
     const result = await client.photos.search({
-      ...userSettings.imageQuery,
+      ...imageQuery,
       page: Math.floor(Math.random() * 200),
       per_page: 1,
     });
@@ -28,16 +31,16 @@ export async function load() {
 
   const fetchRepoData = async () => {
     const repos = await octokit.request("GET /users/{username}/repos", {
-      username: userSettings.github.username,
+      username: github.username,
     });
 
-    userSettings.excludedRepos.forEach((id) => {
+    github.excludedRepos.forEach((id) => {
       const excludedIndex = repos.data.findIndex((repo) => repo.id === id);
       repos.data.splice(excludedIndex, 1);
     });
 
     // append added retrospective if available
-    for (const id in userInfo.repoRetrospective) {
+    for (const id in repoRetrospective) {
       const index = repos.data.findIndex((repo) => repo.id === Number(id));
 
       if (index === -1) {
@@ -45,8 +48,8 @@ export async function load() {
         return null;
       }
 
-      Object.keys(userInfo.repoRetrospective[id]).forEach((key) => {
-        repos.data[index][key] = userInfo.repoRetrospective[id][key];
+      Object.keys(repoRetrospective[id]).forEach((key) => {
+        repos.data[index][key] = repoRetrospective[id][key];
       });
     }
 
@@ -64,6 +67,6 @@ export async function load() {
   return {
     theme: { background: balancedTheme, text: textTheme, highlight: highlightTheme },
     backgroundImage: fetchedBackground,
-    repos: userSettings.sort ? sortRepos(repoData) : repoData,
+    repos: github.sort ? sortRepos(repoData) : repoData,
   };
 }

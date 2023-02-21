@@ -1,19 +1,15 @@
 <script>
   import { onMount } from "svelte";
 
-  import {
-    backgroundImageLoaded,
-    headshotLoaded,
-    isScrolledToTop,
-    // themeColor,
-  } from "../../stores/states";
-
+  import { backgroundImageLoaded, headshotLoaded, isScrolledToTop } from "../../stores/states";
   import { userSettings } from "../userData";
 
   import RandomEmoji from "./RandomEmoji.svelte";
   import BubbleSvg from "./svg/BubbleSVG.svelte";
 
   export let backgroundImage;
+
+  const { personal, fallbackImage } = userSettings;
 
   let backgroundFellBack = false;
 
@@ -25,10 +21,10 @@
         backgroundFellBack = true;
         const root = document.documentElement;
 
-        root.style.setProperty("--background-color", userSettings.fallbackImage.color.background);
-        root.style.setProperty("--highlight-color", userSettings.fallbackImage.color.highlight);
-        root.style.setProperty("--text-color", userSettings.fallbackImage.color.text);
-      }, userSettings.fallbackImage.timeout);
+        root.style.setProperty("--background-color", fallbackImage.color.background);
+        root.style.setProperty("--highlight-color", fallbackImage.color.highlight);
+        root.style.setProperty("--text-color", fallbackImage.color.text);
+      }, fallbackImage.timeout);
     }
 
     // can't use svelte on:load, no access to check if image is cached, so load state is indefinitely false
@@ -36,7 +32,7 @@
     const backgroundImage = document.querySelector(".background-image");
     if (backgroundImage.complete) backgroundImageLoaded.update(() => true);
     else {
-      if (userSettings.fallbackImage) {
+      if (fallbackImage) {
         primeFallback();
       }
       backgroundImage.addEventListener("load", () => {
@@ -59,7 +55,7 @@
 <div>
   <img
     class="background-image"
-    src={backgroundFellBack ? userSettings.fallbackImage.src : backgroundImage.src.original}
+    src={backgroundFellBack ? fallbackImage.filename : backgroundImage.src.original}
     alt={backgroundImage.alt}
     class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}
   />
@@ -71,22 +67,18 @@
         </span>
         <BubbleSvg />
       </span>
-      <img class="headshot" src="headshot.jpg" alt="headshot" />
+      <img class="headshot" src={personal.photo} alt="headshot" />
     </div>
     <div class="information">
-      <span>Akmal Shareef</span>
-      <span>web developer</span>
+      <span>{personal.name}</span>
+      <span>{personal.title}</span>
     </div>
   </div>
   <a
     class="image-attribution"
     class:hidden={!$isScrolledToTop && window.innerWidth <= 1280}
-    href={backgroundFellBack
-      ? userSettings.fallbackImage.photographer_url
-      : backgroundImage.photographer_url}
-    >photo by {backgroundFellBack
-      ? userSettings.fallbackImage.photographer
-      : backgroundImage.photographer}
+    href={backgroundFellBack ? fallbackImage.photographer_url : backgroundImage.photographer_url}
+    >photo by {backgroundFellBack ? fallbackImage.photographer : backgroundImage.photographer}
   </a>
 </div>
 

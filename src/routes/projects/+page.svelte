@@ -1,12 +1,11 @@
 <script>
-  import { themeColor } from "../../stores/states";
   import Project from "../components/Project.svelte";
 
   export let data;
 </script>
 
 <article>
-  <h2 style={`color: ${$themeColor.background};`}>Projects</h2>
+  <h2>Projects</h2>
   {#each data.repos as repository}
     <Project {repository} />
   {/each}
@@ -19,6 +18,7 @@
     color: colors.$grey;
 
     h2 {
+      color: var(--background-color);
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }

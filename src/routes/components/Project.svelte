@@ -7,8 +7,10 @@
   import ToolBadge from "./ToolBadge.svelte";
 
   export let repository;
+
   const { name, id, description, retrospective, topics, stargazers_count, html_url, homepage } =
     repository;
+  const { services } = userSettings;
 
   let expanded = false;
 </script>
@@ -58,7 +60,7 @@
       <IconButton
         goto={homepage}
         newTab
-        showInfo={!userSettings.doNotWake.includes(id) ? $serverStatus[id] || "sleeping" : false}
+        showInfo={!services.doNotWake.includes(id) ? $serverStatus[id] || "sleeping" : false}
         >visit</IconButton
       >
     {/if}

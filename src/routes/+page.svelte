@@ -1,11 +1,12 @@
 <script>
   import { userInfo } from "./userData";
+  const { introduction } = userInfo;
 </script>
 
 <article>
   <div>
     <h2>Hello there 👋🏻</h2>
-    <p>{@html userInfo.introduction}</p>
+    <p>{@html introduction}</p>
   </div>
 </article>
 

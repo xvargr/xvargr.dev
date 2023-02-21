@@ -1,32 +1,25 @@
 <script>
-  import { themeColor } from "../../stores/states";
+  import { userSettings } from "../userData";
+
   import GithubSvg from "../components/svg/GithubSVG.svelte";
   import LinkedinSvg from "../components/svg/LinkedinSVG.svelte";
   import MailSvg from "../components/svg/MailSVG.svelte";
   import IconButton from "../components/IconButton.svelte";
+
+  const { linkedIn, github, email, resume, formLink } = userSettings;
 </script>
 
 <article>
   <section>
     <h2>Contact ✉️</h2>
     <div class="contact-container ">
-      <a
-        class="link-button linkedin"
-        target="_blank"
-        rel="noreferrer"
-        href="https://www.linkedin.com/in/akmal-shareef-53b914264/"
-      >
+      <a class="link-button linkedin" target="_blank" rel="noreferrer" href={linkedIn.page}>
         <span class="icon">
           <LinkedinSvg />
         </span>
         <span>LinkedIn</span>
       </a>
-      <a
-        class="link-button github"
-        target="_blank"
-        rel="noreferrer"
-        href="https://github.com/xvargr"
-      >
+      <a class="link-button github" target="_blank" rel="noreferrer" href={github.page}>
         <span class="icon">
           <GithubSvg />
         </span>
@@ -35,10 +28,10 @@
       <button
         class="link-button email"
         on:click={() => {
-          window.location.href = [..."ved.rgravx@tcatnoc:otliam"].reverse().join("");
+          window.location.href = `mailto:${[...email].reverse().join("")}`;
         }}
         on:mouseenter={(e) => {
-          e.target.childNodes[2].innerText = [..."ved.rgravx@tcatnoc"].reverse().join("");
+          e.target.childNodes[2].innerText = [...email].reverse().join("");
         }}
         on:mouseleave={(e) => {
           e.target.childNodes[2].innerText = "email";
@@ -55,7 +48,7 @@
   <section>
     <h2>Resume</h2>
     <div class="download-button">
-      <IconButton goto="/test.html" download="Akmal-Shareef-Resume" icon="download" big
+      <IconButton goto={`/${resume.filename}`} download={resume.downloadName} icon="download" big
         >Download resume</IconButton
       >
     </div>
@@ -63,7 +56,7 @@
 
   <section>
     <h2>Leave a message</h2>
-    <form action="https://formspree.io/f/mqkopzle" method="POST">
+    <form action={formLink} method="POST">
       <div class="form-container">
         <label for="email"> Your email: </label>
         <input id="email" type="email" name="email" autocomplete="off" placeholder="(optional)" />
@@ -85,9 +78,7 @@
           maxlength="500"
           required
         />
-        <button id="contact-submit-button" type="submit" style={`color: ${$themeColor.text}`}
-          >Send</button
-        >
+        <button id="contact-submit-button" type="submit">Send</button>
       </div>
     </form>
   </section>
@@ -194,6 +185,7 @@
 
           button {
             background-color: var(--background-color);
+            color: var(--text-color);
             margin-top: 1rem;
             padding: 0.4rem;
             font-weight: 600;
