@@ -1,25 +1,55 @@
 <script>
   import { onMount } from "svelte";
-  import { backgroundImageLoaded, headshotLoaded, isScrolledToTop } from "../../stores/states";
+
+  import {
+    backgroundImageLoaded,
+    headshotLoaded,
+    isScrolledToTop,
+    // themeColor,
+  } from "../../stores/states";
+
+  import { userSettings } from "../userData";
+
   import RandomEmoji from "./RandomEmoji.svelte";
   import BubbleSvg from "./svg/BubbleSVG.svelte";
 
   export let backgroundImage;
 
+  let backgroundFellBack = false;
+
   onMount(() => {
+    // image fallback function if loading exceeds maximum duration allowed
+    let imgTimeout;
+    function primeFallback() {
+      imgTimeout = setTimeout(() => {
+        backgroundFellBack = true;
+        const root = document.documentElement;
+
+        root.style.setProperty("--background-color", userSettings.fallbackImage.color.background);
+        root.style.setProperty("--highlight-color", userSettings.fallbackImage.color.highlight);
+        root.style.setProperty("--text-color", userSettings.fallbackImage.color.text);
+      }, userSettings.fallbackImage.timeout);
+    }
+
     // can't use svelte on:load, no access to check if image is cached, so load state is indefinitely false
-    const backgroundElement = document.querySelector(".background-image");
-    if (backgroundElement.complete) backgroundImageLoaded.update(() => true);
+    // background loaded state updater
+    const backgroundImage = document.querySelector(".background-image");
+    if (backgroundImage.complete) backgroundImageLoaded.update(() => true);
     else {
-      backgroundElement.addEventListener("load", () => {
+      if (userSettings.fallbackImage) {
+        primeFallback();
+      }
+      backgroundImage.addEventListener("load", () => {
+        if (imgTimeout) clearTimeout(imgTimeout);
         backgroundImageLoaded.update(() => true);
       });
     }
 
-    const headshotElement = document.querySelector(".headshot");
-    if (headshotElement.complete) headshotLoaded.update(() => true);
+    // headshot loaded state updater
+    const headshotImage = document.querySelector(".headshot");
+    if (headshotImage.complete) headshotLoaded.update(() => true);
     else {
-      headshotElement.addEventListener("load", () => {
+      headshotImage.addEventListener("load", () => {
         headshotLoaded.update(() => true);
       });
     }
@@ -29,7 +59,7 @@
 <div>
   <img
     class="background-image"
-    src={backgroundImage.src.original}
+    src={backgroundFellBack ? userSettings.fallbackImage.src : backgroundImage.src.original}
     alt={backgroundImage.alt}
     class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}
   />
@@ -51,8 +81,12 @@
   <a
     class="image-attribution"
     class:hidden={!$isScrolledToTop && window.innerWidth <= 1280}
-    href={backgroundImage.photographer_url}
-    >photo by {backgroundImage.photographer}
+    href={backgroundFellBack
+      ? userSettings.fallbackImage.photographer_url
+      : backgroundImage.photographer_url}
+    >photo by {backgroundFellBack
+      ? userSettings.fallbackImage.photographer
+      : backgroundImage.photographer}
   </a>
 </div>
 
