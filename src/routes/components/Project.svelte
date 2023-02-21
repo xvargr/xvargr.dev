@@ -148,7 +148,6 @@
 
       .expander {
         color: colors.$grey;
-        // position: absolute;
         width: 100%;
         cursor: pointer;
         border: none;

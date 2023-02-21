@@ -81,7 +81,7 @@ export const userInfo = {
     "svelte",
   ],
 
-  emojis: ["🐺", "🦕", "🐍", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗", "🇲🇾"],
+  emojis: ["🐺", "🦕", "🐍", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗"],
 };
 
 export const userSettings = {
@@ -91,5 +91,20 @@ export const userSettings = {
   wakeServices: false,
   keepServicesAwake: false,
   doNotWake: [588034462],
-  imageQuery: { query: "mountain", size: "medium", orientation: "portrait" },
+  imageQuery: {
+    query: "mountain",
+    size: "medium",
+    // orientation: "landscape" /*orientation: "portrait"*/,
+  },
+  fallbackImage: {
+    src: "bgFallback.jpg",
+    photographer_url: "https://www.pexels.com/@eberhardgross/",
+    photographer: "Eberhard Grossgasteiger",
+    color: {
+      background: "#1e3641",
+      highlight: "#374f5a",
+      text: "#ebebeb",
+    },
+    timeout: 7000, //time in ms before fallback image is used
+  },
 };
