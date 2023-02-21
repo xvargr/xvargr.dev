@@ -11,7 +11,7 @@
 <nav>
   <a class="nav-item" href="/" title="home" class:selected={$page.route.id === "/"}>
     {#if $page.route.id === "/"}
-      <span in:fade>home</span>
+      <span in:fade|local>home</span>
     {:else}
       <HomeSVG />
     {/if}
@@ -23,7 +23,7 @@
     class:selected={$page.route.id === "/projects"}
   >
     {#if $page.route.id === "/projects"}
-      <span in:fade>projects</span>
+      <span in:fade|local>projects</span>
     {:else}
       <CodeSvg />
     {/if}
@@ -35,7 +35,7 @@
     class:selected={$page.route.id === "/experience"}
   >
     {#if $page.route.id === "/experience"}
-      <span in:fade>experience</span>
+      <span in:fade|local>experience</span>
     {:else}
       <Briefcase />
     {/if}
@@ -47,7 +47,7 @@
     class:selected={$page.route.id === "/contact"}
   >
     {#if $page.route.id === "/contact"}
-      <span in:fade>contact</span>
+      <span in:fade|local>contact</span>
     {:else}
       <Mail transition />
     {/if}

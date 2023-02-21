@@ -2,27 +2,39 @@
 // client utilities
 ///
 
-export async function wake(url, retries = 0) {
+import { userSettings } from "./userData";
+const { services } = userSettings;
+
+export async function wake({
+  url,
+  retries = 0,
+  currentUptime = 0,
+  maxUptime = services.maxUptime || null,
+}) {
+  const lastWakeTime = Date.now();
+
   return new Promise((resolve, reject) => {
     window
       .fetch(url, {
         method: "GET",
       })
       .then((data) => {
-        // setInterval(() => {
-        //   wake(url);
-        // }, 840000);
-        console.warn("not keeping service awake");
+        if (services.keepAwake) {
+          // if (max uptime is not set) or (service will stay awake past max uptime), keep awake
+          if (!maxUptime || services.wakeInterval + currentUptime < maxUptime) {
+            setTimeout(() => {
+              console.count(`keeping ${url} awake`);
+              wake({ url, currentUptime: currentUptime + (Date.now() - lastWakeTime), maxUptime });
+            }, services.wakeInterval || 840000);
+          } else console.warn("No longer keeping service awake");
+        } else console.warn("Not keeping service awake");
+
         resolve(data);
       })
       .catch((err) => {
         retries += 1;
-
-        if (retries < 30) {
-          setTimeout(() => {
-            wake(url, retries);
-          }, 10000);
-        } else reject(err);
+        if (retries < 30) setTimeout(() => wake({ url, retries }), 10000);
+        else reject(err);
       });
   });
 }

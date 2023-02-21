@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import { pageLoaded, themeColor, isScrolledToTop, serverStatus } from "../stores/states";
+  import { afterNavigate } from "$app/navigation";
+
+  import { pageLoaded, isScrolledToTop, serverStatus } from "../stores/states";
   import { userSettings } from "./userData";
   import { wake } from "./utils";
 
@@ -12,19 +14,9 @@
   import LoadingOverlay from "./components/LoadingOverlay.svelte";
 
   export let data;
-  const { backgroundImage, theme } = data;
 
-  // initialize color state
-  function initializeColor() {
-    themeColor.update(() => {
-      return {
-        background: theme.background || "#c29588",
-        text: theme.text || "#292929",
-        highlight: theme.highlight || "#f5b9a8",
-      };
-    });
-  }
-  initializeColor();
+  const { backgroundImage, theme } = data;
+  const { fallbackColor, services } = userSettings;
 
   // track scroll position, used for shrinking header on mobile
   function trackScroll(e) {
@@ -35,25 +27,29 @@
     }
   }
 
+  // scroll to top on navigate
+  afterNavigate(() => (document.querySelector("main").scrollTop = 0));
+
+  // set up theming and wake services
   onMount(() => {
     // set css variables bodge, these are global, no other way to bridge js to css and svelte store values can't be used in the style section
     function setCssVariables() {
       const root = document.documentElement;
 
-      root.style.setProperty("--background-color", $themeColor.background);
-      root.style.setProperty("--text-color", $themeColor.text);
-      root.style.setProperty("--highlight-color", $themeColor.highlight);
+      root.style.setProperty("--background-color", theme.background || fallbackColor.background);
+      root.style.setProperty("--text-color", theme.text || fallbackColor.text);
+      root.style.setProperty("--highlight-color", theme.highlight || fallbackColor.highlight);
     }
 
     // wake up sleeping services, for free tiers of heroku/render
     function wakeUpServices() {
       data.repos.forEach((repo) => {
-        if (repo.homepage && !userSettings.doNotWake.includes(repo.id)) {
+        if (repo.homepage && !services.doNotWake.includes(repo.id)) {
           serverStatus.update((status) => {
             return { ...status, [repo.id]: "waking up" };
           });
 
-          wake(`${repo.homepage}/health`)
+          wake({ url: `${repo.homepage}/health` })
             .then(() => {
               serverStatus.update((status) => {
                 return { ...status, [repo.id]: "awake" };
@@ -72,7 +68,7 @@
 
     setCssVariables();
 
-    if (userSettings.wakeServices) wakeUpServices();
+    if (services?.wake) wakeUpServices();
     else console.warn("not waking services");
   });
 </script>

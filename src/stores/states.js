@@ -12,13 +12,6 @@ export const pageLoaded = derived(
   },
 );
 
-// colors
-export const themeColor = writable({
-  background: "#c29588",
-  text: "#292929",
-  highlight: "#f5b9a8",
-});
-
 // scroll position
 export const isScrolledToTop = writable(true);
 

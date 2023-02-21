@@ -1,3 +1,7 @@
+///
+// notes: local images and files should be located in the public folder
+///
+
 export const userInfo = {
   introduction: `I am a self-taught web developer pivoting from an aircraft engineering background. I have been
       creating full stack, responsive web applications for over a year, with a solid understanding
@@ -9,9 +13,9 @@ export const userInfo = {
     {
       institution: "Universiti Kuala Lumpur",
       title: "Bachelor of Technology - Aircraft Engineering Technology (Honours) in Mechanical",
-      duration: "2017-2021",
+      duration: "July 2017 - July 2021",
       description: [
-        "Final term research on propeller noise reduction, data collection with custom designed testbed and Arduino microcontroller, realtime data streamed time over serial connection and recorded to an excel sheet",
+        "Propeller Noise Reduction Paper - data collection with custom designed 6 sensor testbed and Arduino microcontroller, real time data streamed time over serial connection and recorded to an excel sheet",
         "Graduated with 3.75/4.00 CGPA",
       ],
     },
@@ -42,7 +46,7 @@ export const userInfo = {
     },
     {
       institution: "Freelance",
-      title: "Fabricator and PC repair",
+      title: "3D Fabricator and Computer Technician",
       duration: "August 2018 - December 2020",
       description: [
         "Delivered 3D printing and 3D modeling service for students on campus",
@@ -80,24 +84,40 @@ export const userInfo = {
     "tailwindcss",
     "svelte",
   ],
-
-  emojis: ["🐺", "🦕", "🐍", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗"],
 };
 
 export const userSettings = {
-  github: { username: "xvargr", userAgent: "xvargr.dev" },
-  excludedRepos: [500291917],
-  sort: true,
-  wakeServices: false,
-  keepServicesAwake: false,
-  doNotWake: [588034462],
+  personal: { name: "Akmal Shareef", title: "Web Developer", photo: "headshot.jpg" },
+
+  email: "ved.rgravx@tcatnoc",
+
+  resume: { filename: "Akmal-Shareef-Resume.pdf", downloadName: "Akmal-Shareef-Resume" },
+
+  linkedIn: { page: "https://www.linkedin.com/in/xvargr" },
+
+  github: {
+    username: "xvargr",
+    userAgent: "xvargr.dev",
+    page: "https://github.com/xvargr",
+    excludedRepos: [500291917],
+    sort: true,
+  },
+
+  services: {
+    wake: false,
+    keepAwake: true,
+    wakeInterval: 840000, // 14 min ms
+    maxUptime: 1.8e6, // 30 min ms
+    doNotWake: [588034462],
+  },
+
   imageQuery: {
     query: "mountain",
     size: "medium",
-    // orientation: "landscape" /*orientation: "portrait"*/,
   },
+
   fallbackImage: {
-    src: "bgFallback.jpg",
+    filename: "bgFallback.jpg",
     photographer_url: "https://www.pexels.com/@eberhardgross/",
     photographer: "Eberhard Grossgasteiger",
     color: {
@@ -107,4 +127,14 @@ export const userSettings = {
     },
     timeout: 7000, //time in ms before fallback image is used
   },
+
+  fallbackColor: {
+    background: "#c29588",
+    highlight: "#f5b9a8",
+    text: "#292929",
+  },
+
+  formLink: "https://formspree.io/f/mqkopzle",
+
+  emojis: ["🐺", "🦝", "👌", "🐣", "🐳", "🍫", "🍰", "🍪", "🍗"],
 };

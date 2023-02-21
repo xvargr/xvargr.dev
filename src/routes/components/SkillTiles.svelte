@@ -3,7 +3,9 @@
 
   export let data;
 
-  const skillsArray = [...userInfo.additionalSkills];
+  const { additionalSkills } = userInfo;
+
+  const skillsArray = [...additionalSkills];
   data.repos.forEach((repo) => {
     repo.topics?.forEach((topic) => {
       if (!skillsArray.includes(topic)) skillsArray.push(topic);
