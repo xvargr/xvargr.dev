@@ -32,9 +32,7 @@
     const backgroundImage = document.querySelector(".background-image");
     if (backgroundImage.complete) backgroundImageLoaded.update(() => true);
     else {
-      if (fallbackImage) {
-        primeFallback();
-      }
+      if (fallbackImage) primeFallback();
       backgroundImage.addEventListener("load", () => {
         if (imgTimeout) clearTimeout(imgTimeout);
         backgroundImageLoaded.update(() => true);
