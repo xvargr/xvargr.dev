@@ -4,9 +4,8 @@
   import GithubSvg from "../components/svg/GithubSVG.svelte";
   import LinkedinSvg from "../components/svg/LinkedinSVG.svelte";
   import MailSvg from "../components/svg/MailSVG.svelte";
-  import IconButton from "../components/IconButton.svelte";
 
-  const { linkedIn, github, email, resume, formLink } = userSettings;
+  const { linkedIn, github, email, formLink } = userSettings;
 </script>
 
 <article>
@@ -42,15 +41,6 @@
         </span>
         <span>email</span>
       </button>
-    </div>
-  </section>
-
-  <section>
-    <h2>Resume</h2>
-    <div class="download-button">
-      <IconButton goto={`/${resume.filename}`} download={resume.downloadName} icon="download" big
-        >Download resume</IconButton
-      >
     </div>
   </section>
 
@@ -152,11 +142,6 @@
         .email:hover {
           background-color: #abb7ba;
         }
-      }
-
-      .download-button {
-        max-width: 20rem;
-        margin: auto;
       }
 
       form {
