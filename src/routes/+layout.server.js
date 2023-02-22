@@ -39,7 +39,7 @@ export async function load() {
 
   const fetchRepoData = async () => {
     const repoData = await octokit
-      .request("GET /users/{username}/reps", {
+      .request("GET /users/{username}/repos", {
         username: github.username,
       })
       .then((res) => [...res.data])
@@ -50,7 +50,7 @@ export async function load() {
 
     github.excludedRepos.forEach((id) => {
       const excludedIndex = repoData.findIndex((repo) => repo.id === id);
-      repoData.splice(excludedIndex, 1);
+      if (excludedIndex !== -1) repoData.splice(excludedIndex, 1);
     });
 
     // append added retrospective if available
