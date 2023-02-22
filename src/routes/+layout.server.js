@@ -1,4 +1,4 @@
-import { PEXELS_KEY, GITHUB_KEY } from "$env/static/private";
+import { PEXELS_KEY, GH_KEY } from "$env/static/private";
 import { createClient } from "pexels";
 import { Octokit } from "octokit";
 
@@ -10,38 +10,52 @@ import {
   getHighlightTheme,
   sortRepos,
 } from "./utils";
-import { userInfo, userSettings } from "./userData";
+import { userInfo, userSettings, fallbackData } from "./userData";
+
+export const prerender = true;
 
 const { github, imageQuery } = userSettings;
 const { repoRetrospective } = userInfo;
 
-const octokit = new Octokit({ auth: GITHUB_KEY, userAgent: github.userAgent });
+const octokit = new Octokit({ auth: GH_KEY, userAgent: github.userAgent });
 
 export async function load() {
   async function fetchBackground() {
     const client = createClient(PEXELS_KEY);
 
-    const result = await client.photos.search({
-      ...imageQuery,
-      page: Math.floor(Math.random() * 200),
-      per_page: 1,
-    });
+    const result = await client.photos
+      .search({
+        ...imageQuery,
+        page: Math.floor(Math.random() * 200),
+        per_page: 1,
+      })
+      .catch(() => {
+        console.warn("pexels error, using fallback image");
+        return { photos: [{ ...fallbackData.imageData }] };
+      });
+
     return result.photos[0];
   }
 
   const fetchRepoData = async () => {
-    const repos = await octokit.request("GET /users/{username}/repos", {
-      username: github.username,
-    });
+    const repoData = await octokit
+      .request("GET /users/{username}/reps", {
+        username: github.username,
+      })
+      .then((res) => [...res.data])
+      .catch(() => {
+        console.warn("github error, using fallback repository data");
+        return [...fallbackData.repoData];
+      });
 
     github.excludedRepos.forEach((id) => {
-      const excludedIndex = repos.data.findIndex((repo) => repo.id === id);
-      repos.data.splice(excludedIndex, 1);
+      const excludedIndex = repoData.findIndex((repo) => repo.id === id);
+      repoData.splice(excludedIndex, 1);
     });
 
     // append added retrospective if available
     for (const id in repoRetrospective) {
-      const index = repos.data.findIndex((repo) => repo.id === Number(id));
+      const index = repoData.findIndex((repo) => repo.id === Number(id));
 
       if (index === -1) {
         console.warn(`!!! failed to append additional information to repository ${id}, not found`);
@@ -49,11 +63,11 @@ export async function load() {
       }
 
       Object.keys(repoRetrospective[id]).forEach((key) => {
-        repos.data[index][key] = repoRetrospective[id][key];
+        repoData[index][key] = repoRetrospective[id][key];
       });
     }
 
-    return repos.data;
+    return repoData;
   };
 
   const fetchedBackground = await fetchBackground();

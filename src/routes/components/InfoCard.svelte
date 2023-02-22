@@ -2,14 +2,14 @@
   import { onMount } from "svelte";
 
   import { backgroundImageLoaded, headshotLoaded, isScrolledToTop } from "../../stores/states";
-  import { userSettings } from "../userData";
+  import { userSettings, fallbackData } from "../userData";
 
   import RandomEmoji from "./RandomEmoji.svelte";
   import BubbleSvg from "./svg/BubbleSVG.svelte";
 
   export let backgroundImage;
 
-  const { personal, fallbackImage } = userSettings;
+  const { personal } = userSettings;
 
   let backgroundFellBack = false;
 
@@ -21,10 +21,10 @@
         backgroundFellBack = true;
         const root = document.documentElement;
 
-        root.style.setProperty("--background-color", fallbackImage.color.background);
-        root.style.setProperty("--highlight-color", fallbackImage.color.highlight);
-        root.style.setProperty("--text-color", fallbackImage.color.text);
-      }, fallbackImage.timeout);
+        root.style.setProperty("--background-color", fallbackData.imageData.color.background);
+        root.style.setProperty("--highlight-color", fallbackData.imageData.color.highlight);
+        root.style.setProperty("--text-color", fallbackData.imageData.color.text);
+      }, fallbackData.imageData.timeout);
     }
 
     // can't use svelte on:load, no access to check if image is cached, so load state is indefinitely false
@@ -32,7 +32,7 @@
     const backgroundImage = document.querySelector(".background-image");
     if (backgroundImage.complete) backgroundImageLoaded.update(() => true);
     else {
-      if (fallbackImage) primeFallback();
+      if (fallbackData.imageData) primeFallback();
       backgroundImage.addEventListener("load", () => {
         if (imgTimeout) clearTimeout(imgTimeout);
         backgroundImageLoaded.update(() => true);
@@ -53,7 +53,7 @@
 <div>
   <img
     class="background-image"
-    src={backgroundFellBack ? fallbackImage.filename : backgroundImage.src.original}
+    src={backgroundFellBack ? fallbackData.imageData.filename : backgroundImage.src.original}
     alt={backgroundImage.alt}
     class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}
   />
@@ -75,8 +75,12 @@
   <a
     class="image-attribution"
     class:hidden={!$isScrolledToTop && window.innerWidth <= 1280}
-    href={backgroundFellBack ? fallbackImage.photographer_url : backgroundImage.photographer_url}
-    >photo by {backgroundFellBack ? fallbackImage.photographer : backgroundImage.photographer}
+    href={backgroundFellBack
+      ? fallbackData.imageData.photographer_url
+      : backgroundImage.photographer_url}
+    >photo by {backgroundFellBack
+      ? fallbackData.imageData.photographer
+      : backgroundImage.photographer}
   </a>
 </div>
 
