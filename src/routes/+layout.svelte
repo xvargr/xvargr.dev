@@ -176,7 +176,6 @@
       }
 
       main {
-        // padding: 3rem;
         padding: 5rem 8rem;
       }
     }
