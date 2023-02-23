@@ -12,8 +12,6 @@
     repository;
   const { services } = userSettings;
 
-  console.log(`${homepage} !== ${$page.url.origin} ? ${homepage !== $page.url.origin}`);
-
   let expanded = false;
 </script>
 
