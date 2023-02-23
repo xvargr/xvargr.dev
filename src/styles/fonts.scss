@@ -1,3 +1,101 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap");
+/* nunito-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/nunito-sans-v12-latin-regular.eot"); /* IE9 Compat Modes */
+  src: url("fonts/nunito-sans-v12-latin-regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/nunito-sans-v12-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/nunito-sans-v12-latin-regular.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/nunito-sans-v12-latin-regular.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/nunito-sans-v12-latin-regular.svg#NunitoSans")
+      format("svg"); /* Legacy iOS */
+}
+
+/* nunito-sans-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/nunito-sans-v12-latin-600.eot"); /* IE9 Compat Modes */
+  src: url("fonts/nunito-sans-v12-latin-600.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/nunito-sans-v12-latin-600.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/nunito-sans-v12-latin-600.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/nunito-sans-v12-latin-600.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/nunito-sans-v12-latin-600.svg#NunitoSans") format("svg"); /* Legacy iOS */
+}
+
+/* nunito-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/nunito-sans-v12-latin-700.eot"); /* IE9 Compat Modes */
+  src: url("fonts/nunito-sans-v12-latin-700.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/nunito-sans-v12-latin-700.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/nunito-sans-v12-latin-700.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/nunito-sans-v12-latin-700.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/nunito-sans-v12-latin-700.svg#NunitoSans") format("svg"); /* Legacy iOS */
+}
+
+/* quicksand-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/quicksand-v30-latin-regular.eot"); /* IE9 Compat Modes */
+  src: url("fonts/quicksand-v30-latin-regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/quicksand-v30-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/quicksand-v30-latin-regular.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/quicksand-v30-latin-regular.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/quicksand-v30-latin-regular.svg#Quicksand") format("svg"); /* Legacy iOS */
+}
+
+/* quicksand-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/quicksand-v30-latin-500.eot"); /* IE9 Compat Modes */
+  src: url("fonts/quicksand-v30-latin-500.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/quicksand-v30-latin-500.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/quicksand-v30-latin-500.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/quicksand-v30-latin-500.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/quicksand-v30-latin-500.svg#Quicksand") format("svg"); /* Legacy iOS */
+}
+
+/* quicksand-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/quicksand-v30-latin-600.eot"); /* IE9 Compat Modes */
+  src: url("fonts/quicksand-v30-latin-600.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/quicksand-v30-latin-600.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/quicksand-v30-latin-600.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/quicksand-v30-latin-600.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/quicksand-v30-latin-600.svg#Quicksand") format("svg"); /* Legacy iOS */
+}
+
+/* quicksand-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/quicksand-v30-latin-700.eot"); /* IE9 Compat Modes */
+  src: url("fonts/quicksand-v30-latin-700.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/quicksand-v30-latin-700.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/quicksand-v30-latin-700.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/quicksand-v30-latin-700.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/quicksand-v30-latin-700.svg#Quicksand") format("svg"); /* Legacy iOS */
+}
+
 $general: "Quicksand", sans-serif;
 $emphasis: "Nunito Sans", sans-serif;

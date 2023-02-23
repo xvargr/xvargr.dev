@@ -9,7 +9,13 @@
 </script>
 
 <nav>
-  <a class="nav-item" href="/" title="home" class:selected={$page.route.id === "/"}>
+  <a
+    class="nav-item"
+    href="/"
+    title="home"
+    class:selected={$page.route.id === "/"}
+    data-sveltekit-preload-code="eager"
+  >
     {#if $page.route.id === "/"}
       <span in:fade|local>home</span>
     {:else}
@@ -21,6 +27,7 @@
     href="/projects"
     title="projects"
     class:selected={$page.route.id === "/projects"}
+    data-sveltekit-preload-code="eager"
   >
     {#if $page.route.id === "/projects"}
       <span in:fade|local>projects</span>
@@ -33,6 +40,7 @@
     href="/experience"
     title="experience"
     class:selected={$page.route.id === "/experience"}
+    data-sveltekit-preload-code="eager"
   >
     {#if $page.route.id === "/experience"}
       <span in:fade|local>experience</span>
@@ -45,6 +53,7 @@
     href="/contact"
     title="contact and CV"
     class:selected={$page.route.id === "/contact"}
+    data-sveltekit-preload-code="eager"
   >
     {#if $page.route.id === "/contact"}
       <span in:fade|local>contact</span>
