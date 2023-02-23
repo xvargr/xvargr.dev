@@ -66,7 +66,7 @@
     .badge-logo {
       color: white;
       padding: 0.2rem;
-      margin: -1rem 0 -1rem -0.7rem;
+      margin: -1rem 0.5rem -1rem -0.7rem;
       width: 2rem;
       border-radius: 99rem 0 0 99rem;
       flex-grow: 0;
