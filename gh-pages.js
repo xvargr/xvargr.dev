@@ -11,7 +11,8 @@ publish(
     },
     dotfiles: true,
   },
-  () => {
+  (e) => {
     console.log("Deploy Complete!");
+    console.log(e);
   },
 );
