@@ -2,11 +2,12 @@
   import Project from "../components/Project.svelte";
 
   export let data;
+  const { repos } = data;
 </script>
 
 <article>
   <h2>Projects</h2>
-  {#each data.repos as repository}
+  {#each repos as repository}
     <Project {repository} />
   {/each}
 </article>
