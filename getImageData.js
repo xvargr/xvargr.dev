@@ -18,7 +18,7 @@ async function createPexelsData() {
     photos = result.photos.reduce((reduced, current) => {
       let filterOut = false;
       userSettings.imageQuery.exclude.forEach((filter) => {
-        if (current.alt.includes(filter)) filterOut = true;
+        if (!filterOut && current.alt.includes(filter)) filterOut = true;
       });
       if (!filterOut) reduced.push(current);
       return reduced;
