@@ -97,73 +97,8 @@ export function getHighlightTheme(hslArray) {
 }
 
 export function sortRepos(repos) {
-  function sortByStars(repos) {
-    const starsResult = [];
-    const starsUnsorted = [];
-
-    repos.forEach((repo) => {
-      if (repo.stargazers_count > 0) {
-        if (starsResult.length > 0) {
-          const larger = starsResult.findIndex(
-            (resultRepo) => resultRepo.stargazers_count > repo.stargazers_count,
-          );
-
-          const equal = starsResult.findIndex(
-            (resultRepo) => resultRepo.stargazers_count === repo.stargazers_count,
-          );
-
-          if (equal !== -1) starsResult.splice(equal, 0, repo);
-          else {
-            if (larger !== -1) starsResult.splice(larger, 0, repo);
-            else starsResult.push(repo);
-          }
-        } else starsResult.push(repo);
-      } else starsUnsorted.push(repo);
-    });
-
-    return { result: starsResult, unsorted: starsUnsorted };
-  }
-
-  function sortByDate(repos) {
-    const dateResult = [];
-
-    function getRepoDate({ repo, epochOnly }) {
-      const dateString = repo.updated_at;
-      const epochDate = Date.parse(dateString);
-
-      if (epochOnly) {
-        return epochDate;
-      } else {
-        const regexMatch = dateString.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/m);
-
-        return {
-          epochDate,
-          year: regexMatch[1],
-          month: regexMatch[2],
-          day: regexMatch[3],
-          hour: regexMatch[4],
-          minutes: regexMatch[5],
-          seconds: regexMatch[6],
-        };
-      }
-    }
-
-    repos.forEach((repo) => {
-      repo.epochDate = getRepoDate({ repo, epochOnly: true });
-
-      if (dateResult.length > 0) {
-        const older = dateResult.findIndex((resultRepo) => resultRepo.epochDate < repo.epochDate);
-
-        if (older !== -1) dateResult.splice(older, 0, repo);
-        else dateResult.push(repo);
-      } else dateResult.push(repo);
-    });
-
-    return dateResult;
-  }
-
-  const starsSorted = sortByStars(repos);
-  const dateSorted = sortByDate(starsSorted.unsorted);
-
-  return [...starsSorted.result, ...dateSorted];
+  const res = repos.sort((a, b) =>
+    a.stargazers_count > b.stargazers_count ? -1 : b.stargazers_count > a.stargazers_count ? 1 : 0,
+  );
+  return [...res];
 }
