@@ -116,6 +116,7 @@ export const userSettings = {
     size: "medium",
     per_page: 80,
     page: 1,
+    exclude: ["Person", "Man"],
   },
 
   fallbackColor: {

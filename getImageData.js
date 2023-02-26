@@ -13,7 +13,19 @@ async function createPexelsData() {
     ...userSettings.imageQuery,
   });
 
-  result.photos.forEach((photo) => {
+  let photos;
+  if (userSettings.imageQuery.exclude?.length > 0) {
+    photos = result.photos.reduce((reduced, current) => {
+      let filterOut = false;
+      userSettings.imageQuery.exclude.forEach((filter) => {
+        if (current.alt.includes(filter)) filterOut = true;
+      });
+      if (!filterOut) reduced.push(current);
+      return reduced;
+    }, []);
+  } else photos = result.photos;
+
+  photos.forEach((photo) => {
     const toDelete = ["width", "height", "liked"];
     const srcToDelete = ["landscape", "portrait", "small", "medium", "large", "large2x", "tiny"];
     toDelete.forEach((property) => {
@@ -24,7 +36,7 @@ async function createPexelsData() {
     });
   });
 
-  fs.writeFile("./static/imageData.json", JSON.stringify(result.photos), (err) => {
+  fs.writeFile("./src/imageData.json", JSON.stringify(photos), (err) => {
     if (err) {
       console.error(err);
       return;
