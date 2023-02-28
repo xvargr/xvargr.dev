@@ -99,7 +99,7 @@ export const userSettings = {
     username: "xvargr",
     userAgent: "xvargr.dev",
     page: "https://github.com/xvargr",
-    excludedRepos: [500291917],
+    excludedRepos: [500291917, 607604295],
     sort: true,
   },
 
