@@ -23,7 +23,6 @@ export async function wake({
           // if (max uptime is not set) or (service will stay awake past max uptime), keep awake
           if (!maxUptime || services.wakeInterval + currentUptime < maxUptime) {
             setTimeout(() => {
-              console.count(`keeping ${url} awake`);
               wake({ url, currentUptime: currentUptime + (Date.now() - lastWakeTime), maxUptime });
             }, services.wakeInterval || 840000);
           } else console.warn("No longer keeping service awake");
