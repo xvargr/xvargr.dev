@@ -23,13 +23,19 @@ export const userInfo = {
 
   jobHistory: [
     {
+      institution: "CTAPPS MSC Sdn Bhd",
+      title: "Full Stack Developer",
+      duration: "March 2023 - present",
+      description: ["Designing client-side and server-side architecture"],
+    },
+    {
       institution: "Freelance",
-      title: "Web developer",
-      duration: "January 2022 - present",
+      title: "Web Developer",
+      duration: "January 2022 - March 2023",
       description: [
-        "Designing, developing, and maintaining all aspects of a web application, including the server-side and client-side components",
-        "Designing frontend UI with modern frameworks such as React and Svelte",
-        "Creating databases, RESTful APIs, and integrating third-party tools and services",
+        "Designed, developed, and maintained all aspects of a web application, including the server-side and client-side components",
+        "Designed frontend UI with modern frameworks such as React and Svelte",
+        "Created databases, RESTful APIs, and integrating third-party tools and services",
       ],
     },
     {
@@ -44,17 +50,17 @@ export const userInfo = {
         "Took part in Engine preservation and maintenance program for 2 A320 aircraft",
       ],
     },
-    {
-      institution: "Freelance",
-      title: "3D Fabricator and Computer Technician",
-      duration: "August 2018 - December 2020",
-      description: [
-        "Delivered 3D printing and 3D modeling service for students on campus",
-        "Create 3D models from sketch with CAD software such as Fusion360 and CATIA",
-        "Prepare optimize and slice 3D models for printing",
-        "Provided computer repair and upgrade to customers",
-      ],
-    },
+    // {
+    //   institution: "Freelance",
+    //   title: "3D Fabricator and Computer Technician",
+    //   duration: "August 2018 - December 2020",
+    //   description: [
+    //     "Delivered 3D printing and 3D modeling service for students on campus",
+    //     "Create 3D models from sketch with CAD software such as Fusion360 and CATIA",
+    //     "Prepare optimize and slice 3D models for printing",
+    //     "Provided computer repair and upgrade to customers",
+    //   ],
+    // },
   ],
 
   repoRetrospective: {
