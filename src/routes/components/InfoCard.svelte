@@ -68,8 +68,8 @@
       <img class="headshot" src={personal.photo} alt="headshot" />
     </div>
     <div class="information">
-      <span>{personal.name}</span>
-      <span>{personal.title}</span>
+      <span class="name">{personal.name}</span>
+      <span class="title">{personal.title}</span>
     </div>
   </div>
   <a
@@ -155,6 +155,7 @@
 
       .headshot {
         height: 100%;
+        min-width: 125px;
         border-radius: 99rem;
       }
     }
@@ -167,6 +168,11 @@
       font-family: fonts.$emphasis;
       font-weight: 700;
       margin-left: 1rem;
+
+      .title,
+      .name {
+        text-align: center;
+      }
 
       :nth-child(2) {
         font-weight: 500;
