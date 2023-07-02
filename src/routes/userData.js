@@ -103,7 +103,7 @@ export const userInfo = {
 };
 
 export const userSettings = {
-  personal: { name: "Akmal Shareef", title: "Full Stack Developer", photo: "headshot1.webp" },
+  personal: { name: "Akmal Shareef", title: "Full Stack Developer", photo: "headshot.webp" },
 
   email: "ved.rgravx@tcatnoc",
 
