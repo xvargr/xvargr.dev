@@ -23,8 +23,8 @@
     </div>
   </section>
 
-  <Timeline timelineArray={educationHistory} title="Education" />
   <Timeline timelineArray={jobHistory} title="Experience" />
+  <Timeline timelineArray={educationHistory} title="Education" />
 </article>
 
 <style lang="scss">

@@ -1,4 +1,6 @@
 <script>
+  import ToolBadge from "./ToolBadge.svelte";
+
   export let title;
   export let timelineArray = [];
 </script>
@@ -21,6 +23,15 @@
           <li>{description}</li>
         {/each}
       </ul>
+
+      {#if node.skills}
+        <hr />
+        <div class="tools-container">
+          {#each node.skills as skill}
+            <ToolBadge type={skill} />
+          {/each}
+        </div>
+      {/if}
     </div>
     <div class="connector" class:fade-bottom={index === timelineArray.length - 1} />
   {/each}
@@ -63,6 +74,11 @@
         .duration {
           flex-shrink: 0;
         }
+      }
+
+      .tools-container {
+        display: flex;
+        flex-wrap: wrap;
       }
     }
 

@@ -121,6 +121,38 @@
     @include badge-theme($color: colors.$sass);
   }
 
+  .php {
+    @include badge-theme($color: colors.$php);
+  }
+
+  .lua {
+    @include badge-theme($color: colors.$lua);
+  }
+
+  .yii2 {
+    @include badge-theme($color: colors.$yii2);
+  }
+
+  .javascript {
+    @include badge-theme($color: colors.$javascript);
+  }
+
+  .html {
+    @include badge-theme($color: colors.$html);
+  }
+
+  .css {
+    @include badge-theme($color: colors.$css);
+  }
+
+  .php {
+    @include badge-theme($color: colors.$php);
+  }
+
+  .freeswitch {
+    @include badge-theme($color: colors.$freeswitch);
+  }
+
   .socket-io {
     @include badge-theme();
   }

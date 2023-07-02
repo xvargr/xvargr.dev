@@ -115,6 +115,22 @@
         @include skill-theme($color: colors.$sass);
       }
 
+      .php {
+        @include skill-theme($color: colors.$php);
+      }
+
+      .lua {
+        @include skill-theme($color: colors.$lua);
+      }
+
+      .yii2 {
+        @include skill-theme($color: colors.$yii2);
+      }
+
+      .mysql {
+        @include skill-theme($color: colors.$mysql);
+      }
+
       .socket-io {
         @include skill-theme();
       }

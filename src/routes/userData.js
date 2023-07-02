@@ -4,10 +4,10 @@
 
 export const userInfo = {
   introduction: `I am a self-taught web developer pivoting from an aircraft engineering background. I have been
-      creating full stack, responsive web applications for over a year, with a solid understanding
-      of the fundamentals, specializing in the <b>MERN</b> stack, although I do experiment with less common
-      and newer technologies such as Svelte and Next.js. I am a quick learner and have an affinity for
-      problem solving and enjoy the challenges that comes with it.`,
+      creating full stack, responsive web applications for a few years, with a solid understanding
+      of the fundamentals, specializing in the <b>MERN</b> stack, although I do experiment with newer and legacy 
+      technologies such as Svelte, Next.js, and Yii2. I am a quick learner and I enjoy coming up with 
+      elegant solutions to challenging problems, and writing clean, concise, and readable code.`,
 
   educationHistory: [
     {
@@ -26,7 +26,12 @@ export const userInfo = {
       institution: "CTAPPS MSC Sdn Bhd",
       title: "Full Stack Developer",
       duration: "March 2023 - present",
-      description: ["Designing client-side and server-side architecture"],
+      description: [
+        "Developing full-stack web applications including from start to finish",
+        "Implementing backend telephony infrastructures for clients such as Public Bank",
+        "Connecting backend telephony systems with easy to use front-end web interfaces",
+      ],
+      skills: ["javascript", "php", "mysql", "yii2", "lua", "freeswitch", "html", "css"],
     },
     {
       institution: "Freelance",
@@ -63,37 +68,42 @@ export const userInfo = {
     // },
   ],
 
-  repoRetrospective: {
-    515840292: {
-      retrospective: `
-        If I were to start this project over, I would spend more time planning out the structure of the application 
-        and researching the necessary tools beforehand. I would also increase the frequency of maintenance tasks 
-        such as refactoring and modularizing code to keep the codebase clean, simple, and maintainable. 
-        <br/>
-        As the project got more complicated features got exponentially harder to implement. 
-        This could have been avoided if the code was written with extensibility in mind from the very beginning, 
-        instead of doing these tasks while simultaneously implementing and debugging new features.
-        `,
-    },
-  },
+  // repoRetrospective: {
+  //   515840292: {
+  //     retrospective: `
+  //       If I were to start this project over, I would spend more time planning out the structure of the application
+  //       and researching the necessary tools beforehand. I would also increase the frequency of maintenance tasks
+  //       such as refactoring and modularizing code to keep the codebase clean, simple, and maintainable.
+  //       <br/>
+  //       As the project got more complicated features got exponentially harder to implement.
+  //       This could have been avoided if the code was written with extensibility in mind from the very beginning,
+  //       instead of doing these tasks while simultaneously implementing and debugging new features.
+  //       `,
+  //   },
+  // },
 
   additionalSkills: [
-    "javascript",
     "html",
     "css",
+    "javascript",
+    "php",
+    "lua",
     "sass",
     "git",
     "react",
+    "svelte",
+    "yii2",
     "node",
     "mongodb",
+    "mysql",
     "express",
     "tailwindcss",
-    "svelte",
+    "freeswitch",
   ],
 };
 
 export const userSettings = {
-  personal: { name: "Akmal Shareef", title: "Web Developer", photo: "headshot.webp" },
+  personal: { name: "Akmal Shareef", title: "Full Stack Developer", photo: "headshot1.webp" },
 
   email: "ved.rgravx@tcatnoc",
 
