@@ -135,6 +135,7 @@
 
     .image-with-icon {
       position: relative;
+      flex-shrink: 0;
       height: 100%;
 
       .bubble {
@@ -155,7 +156,6 @@
 
       .headshot {
         height: 100%;
-        min-width: 125px;
         border-radius: 99rem;
       }
     }
