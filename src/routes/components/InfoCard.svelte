@@ -218,6 +218,8 @@
       justify-content: space-around;
 
       .image-with-icon {
+        height: auto;
+
         .bubble {
           top: -1rem;
           right: -1rem;
