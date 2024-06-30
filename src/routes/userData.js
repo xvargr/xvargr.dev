@@ -3,11 +3,7 @@
 ///
 
 export const userInfo = {
-  introduction: `I am a self-taught web developer pivoting from an aircraft engineering background. I have been
-      creating full stack, responsive web applications for a few years, with a solid understanding
-      of the fundamentals, specializing in the <b>MERN</b> stack, although I do experiment with newer and legacy 
-      technologies such as Svelte, Next.js, and Yii2. I am a quick learner and I enjoy coming up with 
-      elegant solutions to challenging problems, and writing clean, concise, and readable code.`,
+  introduction: `I am a full stack web developer, with solid fundamentals in both front-end and back-end technologies. I have been creating seamless user experiences and robust server-side business logic for several years. I am a passionate programmer, always keeping up with industry trends. I am detail oriented and believe in continuous self improvement and I'm a quick learner, so I'm always looking for new opportunities to improve.`,
 
   educationHistory: [
     {
@@ -27,20 +23,37 @@ export const userInfo = {
       title: "Full Stack Developer",
       duration: "March 2023 - present",
       description: [
-        "Developing full-stack web applications including from start to finish",
-        "Implementing backend telephony infrastructures for clients such as Public Bank",
-        "Connecting backend telephony systems with easy to use front-end web interfaces",
+        "Developing a modern WhatsApp user interface for customer service and technical support staff from start to end using technologies such as TypeScript, React, Vite, Tailwind, and Socket.io.",
+        "Implementing backend telephony infrastructures for clients such as Public Bank using FreeSwitch and Lua.",
+        "Connecting backend telephony systems with robust, easy to use front-end web interfaces using MVC PHP frameworks such as Laravel and Yii2, and technologies like Axios.",
+        "Clients includes, Acson, Public Bank, Air Selangor, and Chailease.",
       ],
-      skills: ["javascript", "php", "mysql", "yii2", "lua", "freeswitch", "html", "css"],
+      skills: [
+        "javascript",
+        "typescript",
+        "tailwindcss",
+        "php",
+        "html",
+        "css",
+        "express",
+        "node",
+        "mysql",
+        "socket-io",
+        "yii2",
+        "freeswitch",
+        "lua",
+      ],
+      // images:[
+      //   {src: "ctapps.webp", alt: "",}
+      // ]
     },
     {
       institution: "Freelance",
       title: "Web Developer",
       duration: "January 2022 - March 2023",
       description: [
-        "Designed, developed, and maintained all aspects of a web application, including the server-side and client-side components",
-        "Designed frontend UI with modern frameworks such as React and Svelte",
-        "Created databases, RESTful APIs, and integrating third-party tools and services",
+        "Designed front-end UI with modern frameworks such as React and Svelte, along with technologies like Tailwind and Axios.",
+        "Created RESTful APIs with Express js, databases with MongoDB, and integrating third-party tools and services such as OAuth and Socket.io. ",
       ],
     },
     {
@@ -172,7 +185,7 @@ export const fallbackData = {
       private: false,
       html_url: "https://github.com/xvargr/mercury-messenger",
       description:
-        "Group messaging application inspired by Discord and Slack,  created independently as a learning tool for React and Tailwind",
+        "Group messaging application inspired by Discord and Slack. Created with React, Tailwind, Express, Node.js, Socket.io, and MongoDB",
       created_at: "2022-07-20T05:04:08Z",
       updated_at: "2023-02-20T07:57:59Z",
       pushed_at: "2023-02-22T07:11:02Z",
@@ -204,7 +217,7 @@ export const fallbackData = {
       private: false,
       html_url: "https://github.com/xvargr/xvargr.dev",
       description:
-        "Personal portfolio website, fetches latest public github repo data and keeps hosting services awake for seamless visitor access",
+        "Personal portfolio website that fetches latest public GitHub repository data and keeps hosting services awake and ready for visitor access. Created with Svelte and SCSS",
       homepage: "https://xvargr.dev/",
       stargazers_count: 0,
       watchers_count: 0,

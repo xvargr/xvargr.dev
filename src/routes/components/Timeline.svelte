@@ -24,6 +24,15 @@
         {/each}
       </ul>
 
+      {#if node.images}
+        <hr />
+        <div class="images-container">
+          {#each node.images as image}
+            <img src={image.src} alt={image.alt} />
+          {/each}
+        </div>
+      {/if}
+
       {#if node.skills}
         <hr />
         <div class="tools-container">
@@ -73,6 +82,18 @@
       .header {
         .duration {
           flex-shrink: 0;
+        }
+      }
+
+      .images-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        img {
+          max-width: 100%;
+          border-radius: 1rem;
         }
       }
 
