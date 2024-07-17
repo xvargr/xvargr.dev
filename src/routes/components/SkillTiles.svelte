@@ -65,7 +65,7 @@
         color: #2e2e2e;
       }
 
-      .javascript {
+      .typescript {
         @include skill-theme($color: colors.$typescript);
       }
 
