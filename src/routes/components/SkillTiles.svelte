@@ -65,8 +65,16 @@
         color: #2e2e2e;
       }
 
+      .javascript {
+        @include skill-theme($color: colors.$typescript);
+      }
+
       .git {
         @include skill-theme($color: colors.$git);
+      }
+
+      .go {
+        @include skill-theme($color: colors.$go);
       }
 
       .html {
@@ -113,6 +121,10 @@
 
       .sass {
         @include skill-theme($color: colors.$sass);
+      }
+
+      .scss {
+        @include skill-theme($color: colors.$scss);
       }
 
       .php {
