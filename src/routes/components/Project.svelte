@@ -8,8 +8,17 @@
 
   export let repository;
 
-  const { name, id, description, retrospective, topics, stargazers_count, html_url, homepage } =
-    repository;
+  const {
+    name,
+    id,
+    description,
+    created_at,
+    retrospective,
+    topics,
+    stargazers_count,
+    html_url,
+    homepage,
+  } = repository;
   const { services } = userSettings;
 
   let expanded = false;
@@ -17,7 +26,10 @@
 
 <div class="project-container">
   <div class="header-bar">
-    <h3 class="title">{name}</h3>
+    <div class="title-and-year">
+      <h3 class="title">{name}</h3>
+      <small class="year">({new Date(created_at).getFullYear()})</small>
+    </div>
     <span class="stars"
       >{stargazers_count}
       <span>
@@ -102,8 +114,18 @@
       background-color: var(--background-color);
       color: var(--text-color);
 
-      .title {
-        display: inline;
+      .title-and-year {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .title {
+          display: inline;
+        }
+
+        .year {
+          opacity: 0.5;
+        }
       }
 
       .stars {

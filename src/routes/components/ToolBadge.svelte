@@ -6,6 +6,9 @@
   import SocketIoSvg from "./svg/SocketIoSVG.svelte";
   import SvelteSvg from "./svg/SvelteSVG.svelte";
   import SassSvg from "./svg/SassSVG.svelte";
+  import JavaScriptSvg from "./svg/JavaScriptSVG.svelte";
+  import TypeScriptSvg from "./svg/TypeScriptSVG.svelte";
+  import GoSvg from "./svg/GoSVG.svelte";
 
   export let type;
 </script>
@@ -38,6 +41,18 @@
   {:else if type === "sass"}
     <span class="badge-logo">
       <SassSvg />
+    </span>
+  {:else if type === "javascript"}
+    <span class="badge-logo">
+      <JavaScriptSvg />
+    </span>
+  {:else if type === "typescript"}
+    <span class="badge-logo">
+      <TypeScriptSvg />
+    </span>
+  {:else if type === "go"}
+    <span class="badge-logo">
+      <GoSvg />
     </span>
   {/if}
   <span class="badge-text">
@@ -121,6 +136,10 @@
     @include badge-theme($color: colors.$sass);
   }
 
+  .scss {
+    @include badge-theme($color: colors.$scss);
+  }
+
   .php {
     @include badge-theme($color: colors.$php);
   }
@@ -135,6 +154,10 @@
 
   .javascript {
     @include badge-theme($color: colors.$javascript);
+  }
+
+  .typescript {
+    @include badge-theme($color: colors.$typescript);
   }
 
   .html {
@@ -155,5 +178,13 @@
 
   .socket-io {
     @include badge-theme();
+  }
+
+  .git {
+    @include badge-theme($color: colors.$git);
+  }
+
+  .go {
+    @include badge-theme($color: colors.$go);
   }
 </style>

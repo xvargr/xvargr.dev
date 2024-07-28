@@ -6,7 +6,7 @@
 </script>
 
 <article>
-  <h2>Projects</h2>
+  <h2>Personal projects</h2>
   {#each repos as repository}
     <Project {repository} />
   {/each}
