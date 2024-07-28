@@ -96,8 +96,12 @@ export function getHighlightTheme(hslArray) {
 }
 
 export function sortRepos(repos) {
-  const res = repos.sort((a, b) =>
-    a.stargazers_count > b.stargazers_count ? -1 : b.stargazers_count > a.stargazers_count ? 1 : 0,
-  );
+  const res = repos.sort((a, b) => {
+    // sort by stargazers_count, then by created_at
+    if (a.stargazers_count || b.stargazers_count) {
+      return b.stargazers_count - a.stargazers_count;
+    }
+    return Date.parse(b.created_at) - Date.parse(a.created_at);
+  });
   return [...res];
 }
