@@ -94,7 +94,7 @@
   <LoadingOverlay />
 {/if}
 <div class="content" class:loading={!$pageLoaded}>
-  <header class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}>
+  <header class:minimized={!$isScrolledToTop && window.innerWidth < 1280}>
     <InfoCard {backgroundImage} />
     <NavBubbles />
   </header>

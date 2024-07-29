@@ -55,9 +55,9 @@
     class="background-image"
     src={backgroundFellBack ? fallbackData.imageData.filename : backgroundImage.src.original}
     alt={backgroundImage.alt}
-    class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}
+    class:minimized={!$isScrolledToTop && window.innerWidth < 1280}
   />
-  <div class="info-card" class:minimized={!$isScrolledToTop && window.innerWidth <= 1280}>
+  <div class="info-card" class:minimized={!$isScrolledToTop && window.innerWidth < 1280}>
     <div class="image-with-icon">
       <span class="bubble">
         <span class="emoji">
@@ -74,7 +74,7 @@
   </div>
   <a
     class="image-attribution"
-    class:hidden={!$isScrolledToTop && window.innerWidth <= 1280}
+    class:hidden={!$isScrolledToTop && window.innerWidth < 1280}
     href={backgroundFellBack
       ? fallbackData.imageData.photographer_url
       : backgroundImage.photographer_url}
