@@ -20,18 +20,13 @@ export async function load({ fetch }) {
     const repoData = await (await fetch(`https://api.github.com/users/${github.username}/repos`))
       .json()
       .then((res) => {
-        if (res.length) return res;
-        else {
+        if (!res.length) {
           console.warn("github error, using fallback repository data");
           return [...fallbackData.repoData];
         }
-      });
 
-    // remove excluded repos
-    github.excludedRepos.forEach((id) => {
-      const excludedIndex = repoData.findIndex((repo) => repo.id === id);
-      if (excludedIndex !== -1) repoData.splice(excludedIndex, 1);
-    });
+        return res.filter((repo) => github.onlyShow.includes(repo.id));
+      });
 
     // append added retrospective if available
     for (const id in repoRetrospective) {

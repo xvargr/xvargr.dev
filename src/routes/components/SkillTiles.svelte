@@ -144,7 +144,35 @@
       }
 
       .socket-io {
-        @include skill-theme();
+        @include skill-theme($color: colors.$socket-io);
+      }
+
+      .freeswitch {
+        @include skill-theme($color: colors.$freeswitch);
+      }
+
+      .laravel {
+        @include skill-theme($color: colors.$laravel);
+      }
+
+      .sequelize {
+        @include skill-theme($color: colors.$sequelize);
+      }
+
+      .redis {
+        @include skill-theme($color: colors.$redis);
+      }
+
+      .rabbitmq {
+        @include skill-theme($color: colors.$rabbitmq);
+      }
+
+      .vite {
+        @include skill-theme($color: colors.$vite);
+      }
+
+      .pestphp {
+        @include skill-theme($color: colors.$pestphp);
       }
     }
   }

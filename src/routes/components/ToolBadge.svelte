@@ -9,6 +9,10 @@
   import JavaScriptSvg from "./svg/JavaScriptSVG.svelte";
   import TypeScriptSvg from "./svg/TypeScriptSVG.svelte";
   import GoSvg from "./svg/GoSVG.svelte";
+  import LaravelSvg from "./svg/LaravelSVG.svelte";
+  import RedisSvg from "./svg/RedisSVG.svelte";
+  import RabbitmqSVG from "./svg/RabbitmqSVG.svelte";
+  import ViteSvg from "./svg/ViteSVG.svelte";
 
   export let type;
 </script>
@@ -53,6 +57,22 @@
   {:else if type === "go"}
     <span class="badge-logo">
       <GoSvg />
+    </span>
+  {:else if type === "laravel"}
+    <span class="badge-logo">
+      <LaravelSvg />
+    </span>
+  {:else if type === "redis"}
+    <span class="badge-logo">
+      <RedisSvg />
+    </span>
+  {:else if type === "rabbitmq"}
+    <span class="badge-logo">
+      <RabbitmqSVG />
+    </span>
+  {:else if type === "vite"}
+    <span class="badge-logo">
+      <ViteSvg />
     </span>
   {/if}
   <span class="badge-text">
@@ -186,5 +206,29 @@
 
   .go {
     @include badge-theme($color: colors.$go);
+  }
+
+  .laravel {
+    @include badge-theme($color: colors.$laravel);
+  }
+
+  .sequelize {
+    @include badge-theme($color: colors.$sequelize);
+  }
+
+  .redis {
+    @include badge-theme($color: colors.$redis);
+  }
+
+  .rabbitmq {
+    @include badge-theme($color: colors.$rabbitmq);
+  }
+
+  .vite {
+    @include badge-theme($color: colors.$vite);
+  }
+
+  .pestphp {
+    @include badge-theme($color: colors.$pestphp);
   }
 </style>
