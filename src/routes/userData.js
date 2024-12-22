@@ -11,8 +11,8 @@ export const userInfo = {
       title: "Bachelor of Technology - Aircraft Engineering Technology (Honours) in Mechanical",
       duration: "July 2017 - July 2021",
       description: [
-        "Propeller Noise Reduction Paper - data collection with custom designed 6 sensor testbed and Arduino microcontroller, real time data streamed time over serial connection and recorded to an excel sheet",
-        "3.75/4.00 CGPA",
+        "Propeller Noise Reduction Research - Designed programed, and 3D printed an Arduino powered 6 sensor array testbed capable of real time data streaming and analysis.",
+        "3.75 CGPA",
       ],
     },
   ],
@@ -23,11 +23,13 @@ export const userInfo = {
       title: "Full Stack Developer",
       duration: "March 2023 - present",
       description: [
-        "Building a scalable multi-tenant SAAS platform for customer reach and engagement using Laravel, React, Typescript, Node.js, Redis, and RabbitMQ.",
-        "Developing a customer service WhatsApp client web application for customer service and technical support staff using technologies such as TypeScript, React, Vite, Tailwind, and Socket.io.",
-        "Implementing PABX telephony infrastructure for clients such as Public Bank using FreeSwitch and Lua.",
+        "Building a scalable multi-tenant CRM SAAS platform for customer reach and engagement using Laravel, React, Typescript, PHP, Node.js, Redis, and RabbitMQ.",
+        "Developing custom WhatsApp web client for support staff with CRM integration using technologies such as TypeScript, React, Tailwind, and Socket.io.",
+        "Implementing PABX telephony infrastructure with FreeSwitch and Lua.",
         "Connecting backend PABX telephony systems with robust, user friendly, web management interface, created using MVC PHP frameworks such as Laravel and Yii2, and technologies like Axios.",
-        "Clients includes, Acson, Public Bank, Air Selangor, and Chailease.",
+        "Writing unit and feature tests to improve code reliability.",
+        "Writing and maintaining documentation of new features.",
+        "Clients includes: Acson, Public Bank.",
       ],
       skills: [
         "javascript",
@@ -59,8 +61,8 @@ export const userInfo = {
       title: "Web Developer",
       duration: "January 2022 - March 2023",
       description: [
-        "Designed front-end UI with modern frameworks such as React and Svelte, along with technologies like Tailwind and Axios.",
-        "Created RESTful APIs with Express js, databases with MongoDB, and integrating third-party tools and services such as OAuth and Socket.io. ",
+        "Designed front-end UI with modern tech stack including technologies such as React, Svelte, and Tailwind.",
+        "Created RESTful API backends with Express.js, databases with MongoDB, and integrating third-party libraries such as OAuth and Socket.io.",
       ],
     },
     {
