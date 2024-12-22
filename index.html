@@ -5,11 +5,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
 
-    <meta http-equiv="content-security-policy" content="">
-		<link rel="preload" as="script" crossorigin="anonymous" href="/_app/immutable/entry/start.4e3e46bb.mjs">
-		<link rel="preload" as="script" crossorigin="anonymous" href="/_app/immutable/chunks/index.84184d6e.mjs">
-		<link rel="preload" as="script" crossorigin="anonymous" href="/_app/immutable/chunks/singletons.11e40772.mjs">
-		<link rel="preload" as="script" crossorigin="anonymous" href="/_app/immutable/entry/app.bfad5f19.mjs">
+    
+		<link rel="modulepreload" href="/_app/immutable/entry/start.d6db979c.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/index.a73a73a8.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/singletons.9a36cfaa.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.e682ebee.js">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KG34C2H0H6"></script>
@@ -28,17 +28,18 @@
     <div style="display: contents">
 			<script>
 				{
-					__sveltekit_1xvjfsj = {
-						env: {},
-						assets: "",
-						element: document.currentScript.parentElement
+					__sveltekit_x6q53o = {
+						base: "",
+						env: {}
 					};
 
+					const element = document.currentScript.parentElement;
+
 					Promise.all([
-						import("/_app/immutable/entry/start.4e3e46bb.mjs"),
-						import("/_app/immutable/entry/app.bfad5f19.mjs")
+						import("/_app/immutable/entry/start.d6db979c.js"),
+						import("/_app/immutable/entry/app.e682ebee.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_1xvjfsj.element);
+						kit.start(app, element);
 					});
 				}
 			</script>
