@@ -26,9 +26,11 @@
 
       {#if node.images}
         <hr />
-        <div class="images-container">
+        <div class="image-carousel">
           {#each node.images as image}
-            <img src={image.src} alt={image.alt} />
+            <div class="carousel-item">
+              <img src={image.src} alt={image.alt} />
+            </div>
           {/each}
         </div>
       {/if}
@@ -85,15 +87,25 @@
         }
       }
 
-      .images-container {
+      .image-carousel {
         display: flex;
-        flex-wrap: wrap;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 1rem;
         margin-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        touch-action: pan-x; 
+        overscroll-behavior: auto;
 
-        img {
-          max-width: 100%;
-          border-radius: 1rem;
+        .carousel-item {
+          flex: 0 0 100%;
+          scroll-snap-align: center;
+
+          img {
+            object-fit: contain;
+            border-radius: 1rem;
+          }
         }
       }
 

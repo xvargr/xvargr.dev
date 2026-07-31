@@ -11,8 +11,10 @@
   import GoSvg from "./svg/GoSVG.svelte";
   import LaravelSvg from "./svg/LaravelSVG.svelte";
   import RedisSvg from "./svg/RedisSVG.svelte";
-  import RabbitmqSVG from "./svg/RabbitmqSVG.svelte";
+  import RabbitmqSvg from "./svg/RabbitmqSVG.svelte";
   import ViteSvg from "./svg/ViteSVG.svelte";
+  import CSvg from "./svg/CSVG.svelte";
+  import CppSvg from "./svg/CppSVG.svelte";
 
   export let type;
 </script>
@@ -68,11 +70,19 @@
     </span>
   {:else if type === "rabbitmq"}
     <span class="badge-logo">
-      <RabbitmqSVG />
+      <RabbitmqSvg />
     </span>
   {:else if type === "vite"}
     <span class="badge-logo">
       <ViteSvg />
+    </span>
+  {:else if type === "c"}
+    <span class="badge-logo">
+      <CSvg />
+    </span>
+  {:else if type === "cpp"}
+    <span class="badge-logo">
+      <CppSvg />
     </span>
   {/if}
   <span class="badge-text">
@@ -230,5 +240,13 @@
 
   .pestphp {
     @include badge-theme($color: colors.$pestphp);
+  }
+
+  .c {
+    @include badge-theme($color: colors.$c);
+  }
+
+  .cpp {
+    @include badge-theme($color: colors.$cpp);
   }
 </style>

@@ -174,6 +174,14 @@
       .pestphp {
         @include skill-theme($color: colors.$pestphp);
       }
+
+      .c {
+        @include skill-theme($color: colors.$c);
+      }
+
+      .cpp {
+        @include skill-theme($color: colors.$cpp);
+      }
     }
   }
 </style>
